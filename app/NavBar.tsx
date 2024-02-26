@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import classnames from "classnames";
 
+import { SiOpenbugbounty } from "react-icons/si";
+
 const NavBar = () => {
   const currentPath = usePathname();
 
@@ -15,7 +17,10 @@ const NavBar = () => {
 
   return (
     <nav className="h-14 mb-5 px-5  border-b flex items-center gap-7">
-      <Link href={"/"}>Logo</Link>
+      <Link href={"/"} className=" flex items-center">
+        <SiOpenbugbounty size={35} />
+        <span className="font-extrabold font-[Inter] text-2xl">Bugster</span>
+      </Link>
       <ul className="flex gap-7">
         {links.map((l) => (
           <li key={l.href}>
