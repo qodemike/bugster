@@ -57,7 +57,7 @@ const NewIssuePage = () => {
           )}
         />
         <ErrorMessage>{errors.description?.message}</ErrorMessage>
-        <Button>Create New Issue</Button>
+        <Button>Submit</Button>
       </form>
     </div>
   );

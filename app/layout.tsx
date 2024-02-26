@@ -6,7 +6,7 @@ import "@radix-ui/themes/styles.css";
 import "./globals.css";
 import "./theme-config.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
