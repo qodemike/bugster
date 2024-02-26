@@ -3,7 +3,7 @@ import {z} from 'zod';
 import prisma from '@/prisma/client'
 
 const validateIssueSchema = z.object({
-    title: z.string().min(2).max(255),
+    title: z.string().min(2,'Title is too short').max(255),
     description: z.string().min(2)
 })
 
