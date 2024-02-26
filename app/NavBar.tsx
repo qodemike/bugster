@@ -1,7 +1,15 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
+import classnames from "classnames";
 
 const NavBar = () => {
+  const currentPath = usePathname();
+
+  console.log(currentPath);
+
   const links = [
     { label: "Dashboard", href: "/" },
     { label: "Issues", href: "/issues" },
@@ -15,7 +23,11 @@ const NavBar = () => {
           <li key={l.href}>
             <Link
               href={l.href}
-              className="text-zinc-500 hover:text-zinc-800 transition"
+              className={classnames({
+                "text-zinc-900": currentPath === l.href,
+                "text-zinc-500": currentPath != l.href,
+                "hover:text-zinc-800 transition": true,
+              })}
             >
               {l.label}
             </Link>
