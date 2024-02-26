@@ -10,6 +10,7 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { validateIssueSchema } from "@/app/validationSchemas";
 import { z } from "zod";
+import ErrorMessage from "@/app/components/ErrorMessage";
 
 // Replacing IssueForm Interface type by getting type from the already defined in zod schema
 type IssueForm = z.infer<typeof validateIssueSchema>;
@@ -24,7 +25,6 @@ const NewIssuePage = () => {
   } = useForm<IssueForm>({
     resolver: zodResolver(validateIssueSchema),
   });
-
 
   const [error, setError] = useState<string>();
 
@@ -48,7 +48,7 @@ const NewIssuePage = () => {
         <TextField.Root>
           <TextField.Input {...register("title")} placeholder="Title" />
         </TextField.Root>
-        {errors.title && <Text color="red" >{errors.title.message}</Text>}
+        <ErrorMessage>{errors.title?.message}</ErrorMessage>
         <Controller
           name="description"
           control={control}
@@ -56,7 +56,7 @@ const NewIssuePage = () => {
             <SimpleMDE placeholder="Description" {...field} />
           )}
         />
-        {errors.description && <Text color="red" as="p">{errors.description.message}</Text>}
+        <ErrorMessage>{errors.description?.message}</ErrorMessage>
         <Button>Create New Issue</Button>
       </form>
     </div>
