@@ -6,14 +6,14 @@ import { Callout, TextField } from "@radix-ui/themes";
 import SimpleMDE from "react-simplemde-editor";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { validateIssueSchema } from "@/app/validationSchemas";
+import { issueValidationSchema } from "@/app/validationSchemas";
 import { z } from "zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import "easymde/dist/easymde.min.css";
 import { Issue } from "@prisma/client";
 
-type IssueFormData = z.infer<typeof validateIssueSchema>;
+type IssueFormData = z.infer<typeof issueValidationSchema>;
 
 interface Props{
     issue?: Issue;
@@ -26,18 +26,16 @@ const IssueForm = ({issue}: Props) => {
 
   const {
     register,
-    reset,
     handleSubmit,
     control,
     formState: { errors },
   } = useForm<IssueFormData>({
-    resolver: zodResolver(validateIssueSchema),
+    resolver: zodResolver(issueValidationSchema),
   });
 
-  if (issue) reset(issue);
 
   const onSubmit = async (data: IssueFormData) => {
-    try {
+       try {
       await axios.post("/api/issues", data);
       router.push("/issues");
     } catch (err) {
@@ -54,10 +52,11 @@ const IssueForm = ({issue}: Props) => {
       )}
       <form className=" space-y-3" onSubmit={handleSubmit(onSubmit)}>
         <TextField.Root>
-          <TextField.Input {...register("title")} placeholder="Title" />
+          <TextField.Input defaultValue={issue?.title} {...register("title")} placeholder="Title" />
         </TextField.Root>
         <ErrorMessage>{errors.title?.message}</ErrorMessage>
         <Controller
+          defaultValue={issue?.description}
           name="description"
           control={control}
           render={({ field }) => (
