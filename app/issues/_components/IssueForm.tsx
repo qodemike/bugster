@@ -15,11 +15,11 @@ import { Issue } from "@prisma/client";
 
 type IssueFormData = z.infer<typeof issueValidationSchema>;
 
-interface Props{
-    issue?: Issue;
+interface Props {
+  issue?: Issue;
 }
 
-const IssueForm = ({issue}: Props) => {
+const IssueForm = ({ issue }: Props) => {
   const router = useRouter();
 
   const [error, setError] = useState<string>();
@@ -33,11 +33,12 @@ const IssueForm = ({issue}: Props) => {
     resolver: zodResolver(issueValidationSchema),
   });
 
-
   const onSubmit = async (data: IssueFormData) => {
-       try {
-      await axios.post("/api/issues", data);
+    try {
+      if (issue) await axios.patch("/api/issues/" + issue.id, data);
+      else await axios.post("/api/issues", data);
       router.push("/issues");
+      router.refresh();
     } catch (err) {
       setError("An unexpected error occured");
     }
@@ -52,7 +53,11 @@ const IssueForm = ({issue}: Props) => {
       )}
       <form className=" space-y-3" onSubmit={handleSubmit(onSubmit)}>
         <TextField.Root>
-          <TextField.Input defaultValue={issue?.title} {...register("title")} placeholder="Title" />
+          <TextField.Input
+            defaultValue={issue?.title}
+            {...register("title")}
+            placeholder="Title"
+          />
         </TextField.Root>
         <ErrorMessage>{errors.title?.message}</ErrorMessage>
         <Controller
@@ -65,7 +70,7 @@ const IssueForm = ({issue}: Props) => {
         />
         <ErrorMessage>{errors.description?.message}</ErrorMessage>
         <button className=" px-5 py-2 text-white text-sm font-medium bg-violet-600 hover:bg-violet-700 rounded transition">
-          Submit
+          {issue ? "Update Issue": "Submit Issue" }
         </button>
       </form>
     </div>

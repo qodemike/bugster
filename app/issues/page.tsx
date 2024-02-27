@@ -16,4 +16,7 @@ const IssuesPage = async () => {
   );
 };
 
+// To force dynamic rendering of this page. 
+export const dynamic = 'force-dynamic';
+
 export default IssuesPage;
