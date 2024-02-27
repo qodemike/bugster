@@ -1,6 +1,4 @@
-import { Table } from "@radix-ui/themes";
 import Button from  "@/app/components/Button"
-import Link from "next/link";
 import React from "react";
 import prisma from "@/prisma/client";
 import IssuesTable from "../components/IssuesTable";
