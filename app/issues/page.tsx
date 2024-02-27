@@ -1,7 +1,7 @@
 import Button from  "@/app/components/Button"
 import React from "react";
 import prisma from "@/prisma/client";
-import IssuesTable from "../components/IssuesTable";
+import IssuesTable from "./_components/IssuesTable";
 
 const IssuesPage = async () => {
   const issues = await prisma.issue.findMany();

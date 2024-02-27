@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Table } from "@radix-ui/themes";
-import IssueStatusBadge from "../components/IssueStatusBadge";
+import IssueStatusBadge from "../../components/IssueStatusBadge";
 import { useRouter } from "next/navigation";
 import {Issue} from '@prisma/client'
 
