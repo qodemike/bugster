@@ -4,16 +4,7 @@ import React from "react";
 import { Table } from "@radix-ui/themes";
 import IssueStatusBadge from "../components/IssueStatusBadge";
 import { useRouter } from "next/navigation";
-
-
-interface Issue{
-    id: number;
-    title: string;
-    description: string;
-    status: "OPEN" | "IN_PROGRESS" | "CLOSED";
-    createdAt: Date;
-    updatedAt: Date;
-}
+import {Issue} from '@prisma/client'
 
 interface Props{
     issues: Issue[];
