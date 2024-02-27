@@ -1,7 +1,7 @@
-import Button from  "@/app/components/Button"
 import React from "react";
 import prisma from "@/prisma/client";
 import IssuesTable from "./_components/IssuesTable";
+import IssueActions from "./_components/IssueActions";
 
 const IssuesPage = async () => {
   const issues = await prisma.issue.findMany();
@@ -9,7 +9,7 @@ const IssuesPage = async () => {
   return (
     <div>
       <div className="mb-5 w-fit cursor-pointer">
-      <Button href="/issues/new">New Issue</Button>        
+        <IssueActions/>
       </div>
       <IssuesTable issues={issues}></IssuesTable>
     </div>
