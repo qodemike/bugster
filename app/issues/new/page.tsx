@@ -2,7 +2,7 @@
 
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
-import { Button, Callout, TextField, Text } from "@radix-ui/themes";
+import { Callout, TextField, Text } from "@radix-ui/themes";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { validateIssueSchema } from "@/app/validationSchemas";
 import { z } from "zod";
 import ErrorMessage from "@/app/components/ErrorMessage";
+import Button from "@/app/components/Button";
 
 // Replacing IssueForm Interface type by getting type from the already defined in zod schema
 type IssueForm = z.infer<typeof validateIssueSchema>;
@@ -57,7 +58,9 @@ const NewIssuePage = () => {
           )}
         />
         <ErrorMessage>{errors.description?.message}</ErrorMessage>
-        <Button>Submit</Button>
+        <button className=" px-5 py-2 text-white text-sm font-medium bg-violet-600 hover:bg-violet-700 rounded transition">
+          Submit
+        </button>
       </form>
     </div>
   );
