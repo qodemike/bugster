@@ -13,6 +13,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Status {
+  OPEN
+  IN_PROGRESS
+  CLOSED
+}
+
 model Issue {
   id          Int      @id @default(autoincrement())
   title       String   @db.VarChar(255)
@@ -22,8 +28,3 @@ model Issue {
   updatedAt   DateTime @updatedAt
 }
 
-enum Status {
-  OPEN
-  IN_PROGRESS
-  CLOSED
-}

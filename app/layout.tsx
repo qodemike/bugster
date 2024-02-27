@@ -6,7 +6,7 @@ import "@radix-ui/themes/styles.css";
 import "./globals.css";
 import "./theme-config.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: '--font-inter'});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,13 +19,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" className={inter.variable}>
+      <body >
         <Theme appearance="light" accentColor="violet">
-          <div className={inter.className}>
             <NavBar />
             <main className={" p-7"}>{children}</main>
-          </div>
         </Theme>
       </body>
     </html>
