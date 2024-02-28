@@ -31,7 +31,7 @@ const DeleteIssueButton = ({ issueId }: Props) => {
     <>
     <AlertDialog.Root >
       <AlertDialog.Trigger>
-        <Button disabled={isDeleting} color="red">Delete Issue</Button>
+        <Button disabled={isDeleting} color="red" style={{cursor: "pointer"}}>Delete Issue</Button>
       </AlertDialog.Trigger>
       <AlertDialog.Content>
         <AlertDialog.Title>Confirm Deletion</AlertDialog.Title>
@@ -40,10 +40,10 @@ const DeleteIssueButton = ({ issueId }: Props) => {
         </AlertDialog.Description>
         <Box className="mt-5 flex gap-5">
             <AlertDialog.Cancel>
-                <Button variant="soft">Cancel</Button>
+                <Button style={{cursor: "pointer"}} variant="soft">Cancel</Button>
             </AlertDialog.Cancel>
             <AlertDialog.Action>
-                <Button color="red"  onClick={handleDelete}> Confirm </Button>
+                <Button style={{cursor: "pointer"}} color="red"  onClick={handleDelete}> Confirm </Button>
             </AlertDialog.Action>
         </Box>
       </AlertDialog.Content>
