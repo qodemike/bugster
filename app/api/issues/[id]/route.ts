@@ -48,7 +48,7 @@ export async function DELETE(
     })
     .then(() => NextResponse.json({}))
     .catch((err) => {
-      NextResponse.json({ error: "something went wrong" }, { status: 500 });
+      NextResponse.json({ error: "Could not delete Issue!" }, { status: 500 });
       console.log(err);
     });
 }
