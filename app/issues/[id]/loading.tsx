@@ -11,7 +11,7 @@ const IssueDetailSkelton = () => {
         <Skeleton width="8rem" />
       </Flex>
       <Card>
-        <Skeleton count={7} />
+        <Skeleton count={10} />
       </Card>
     </div>
   );
