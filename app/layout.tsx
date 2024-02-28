@@ -5,6 +5,7 @@ import { Container, Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import "./globals.css";
 import "./theme-config.css";
+import AuthProvider from "./context/authProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter'});
 
@@ -17,6 +18,7 @@ export default function RootLayout({children,}: Readonly<{ children: React.React
   return (
     <html lang="en">
       <body className={inter.variable}>
+        <AuthProvider>
         <Theme appearance="light" accentColor="violet">
             <NavBar />
             <main className={" p-7"}>
@@ -25,6 +27,7 @@ export default function RootLayout({children,}: Readonly<{ children: React.React
               </Container>
               </main>
         </Theme>
+        </AuthProvider>
       </body>
     </html>
   );
