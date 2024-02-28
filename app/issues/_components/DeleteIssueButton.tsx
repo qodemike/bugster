@@ -12,14 +12,17 @@ interface Props{
 const DeleteIssueButton = ({ issueId }: Props) => {
   const router = useRouter();
   const [error, setError] = useState(false);
+  const [isDeleting, setDeleting] = useState(false);
 
   const handleDelete = async () => {
     try {
+      setDeleting(true);
       await axios.delete('/api/issues/'+issueId);
       router.push('/issues');
       router.refresh();
     }
     catch(err) {
+        setDeleting(false);
         setError(true)
     }
   }
@@ -28,7 +31,7 @@ const DeleteIssueButton = ({ issueId }: Props) => {
     <>
     <AlertDialog.Root >
       <AlertDialog.Trigger>
-        <Button color="red">Delete Issue</Button>
+        <Button disabled={isDeleting} color="red">Delete Issue</Button>
       </AlertDialog.Trigger>
       <AlertDialog.Content>
         <AlertDialog.Title>Confirm Deletion</AlertDialog.Title>
