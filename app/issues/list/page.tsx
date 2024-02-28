@@ -1,7 +1,7 @@
 import React from "react";
 import prisma from "@/prisma/client";
-import IssuesTable from "./_components/IssuesTable";
-import IssueActions from "./_components/IssueActions";
+import IssuesTable from "../_components/IssuesTable";
+import IssueActions from "../_components/IssueActions";
 
 const IssuesPage = async () => {
   const issues = await prisma.issue.findMany();
