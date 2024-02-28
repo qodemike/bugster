@@ -18,27 +18,30 @@ const NavBar = () => {
   ];
 
   return (
-    <nav className="h-14 mb-5 px-5  border-b flex items-center gap-7">
-      <Link href={"/"} className=" flex items-center">
-        <SiOpenbugbounty size={35} />
-        <span className="font-extrabold font-[Inter] text-2xl">Bugster</span>
-      </Link>
-      <ul className="flex gap-7">
-        {links.map((l) => (
-          <li key={l.href}>
-            <Link
-              href={l.href}
-              className={classnames({
-                "text-zinc-900": currentPath === l.href,
-                "text-zinc-500": currentPath != l.href,
-                "hover:text-zinc-800 transition": true,
-              })}
-            >
-              {l.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <nav className=" mb-5  py-4 px-5 lg:px-6 border-b">
+      <div className=" flex justify-between items-center">
+      <div className="flex items-center gap-10 ">
+        <Link href={"/"} className=" relative -top-[1.5px] flex items-center">
+          <SiOpenbugbounty size={35} />
+          <span className="font-extrabold font-[Inter] text-2xl">Bugster</span>
+        </Link>
+        <ul className="flex gap-7">
+          {links.map((l) => (
+            <li key={l.href}>
+              <Link
+                href={l.href}
+                className={classnames({
+                  "text-zinc-900": currentPath === l.href,
+                  "text-zinc-500": currentPath != l.href,
+                  "hover:text-zinc-800 transition": true,
+                })}
+              >
+                {l.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
       <Box>
         {status === "authenticated" && (
           <Link href="api/auth/signout">Log out</Link>
@@ -47,6 +50,7 @@ const NavBar = () => {
           <Link href={"api/auth/signin"}>Login</Link>
         )}
       </Box>
+      </div>
     </nav>
   );
 };

@@ -15,7 +15,7 @@ const IssuesTable = ({issues}: Props) => {
 
   return (
     <Table.Root variant="surface">
-      <Table.Header className="bg-slate-100">
+      <Table.Header >
         <Table.Row>
           <Table.ColumnHeaderCell>Issue</Table.ColumnHeaderCell>
           <Table.ColumnHeaderCell className="hidden md:table-cell">
