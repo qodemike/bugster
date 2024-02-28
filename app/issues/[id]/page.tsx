@@ -37,7 +37,7 @@ const IssueDetailPage = async ({ params }: Props) => {
         >
           <Pencil2Icon /> Edit Issue
         </Button>
-        <DeleteIssueButton />
+        <DeleteIssueButton issueId={issue.id} />
       </Box>
     </Grid>
   );
