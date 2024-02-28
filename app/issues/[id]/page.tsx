@@ -7,6 +7,7 @@ import IssueDetails from "./IssueDetails";
 import { Pencil2Icon } from "@radix-ui/react-icons";
 import dynamic from "next/dynamic";
 import IssueFormSkeleton from "../_components/IssueFormSkeleton";
+import DeleteIssueButton from "../_components/DeleteIssueButton";
 
 const IssueForm = dynamic(() => import("@/app/issues/_components/IssueForm"), {
   ssr: false,
@@ -25,7 +26,7 @@ const IssueDetailPage = async ({ params }: Props) => {
   if (!issue) notFound();
 
   return (
-    <Grid columns={{ initial: "1", sm: "5" }} gap={"5"} >
+    <Grid columns={{ initial: "1", sm: "5" }} gap={"5"}>
       <Box className=" md:col-span-3">
         <IssueDetails issue={issue} />
       </Box>
@@ -36,10 +37,7 @@ const IssueDetailPage = async ({ params }: Props) => {
         >
           <Pencil2Icon /> Edit Issue
         </Button>
-        <Button 
-          href={''}
-          className=" bg-red-500 hover:bg-red-600  flex justify-center items-center gap-2"
-        >Delete Issue</Button>
+        <DeleteIssueButton />
       </Box>
     </Grid>
   );
