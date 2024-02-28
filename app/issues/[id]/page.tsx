@@ -32,7 +32,7 @@ const IssueDetailPage = async ({ params }: Props) => {
       </Box>
       <Box className="col-span-2 flex flex-col gap-5">
         <Button
-          href={`/issues/${issue.id}/edit`}
+          href={`/issues/edit/${issue.id}`}
           className=" flex justify-center items-center gap-2"
         >
           <Pencil2Icon /> Edit Issue
