@@ -8,6 +8,7 @@ import { Pencil2Icon } from "@radix-ui/react-icons";
 import dynamic from "next/dynamic";
 import IssueFormSkeleton from "../_components/IssueFormSkeleton";
 import DeleteIssueButton from "../_components/DeleteIssueButton";
+import SelectAssignee from "./SelectAssignee";
 
 const IssueForm = dynamic(() => import("@/app/issues/_components/IssueForm"), {
   ssr: false,
@@ -31,6 +32,7 @@ const IssueDetailPage = async ({ params }: Props) => {
         <IssueDetails issue={issue} />
       </Box>
       <Box className="col-span-2 flex flex-col gap-5">
+        <SelectAssignee/>
         <Button
           href={`/issues/edit/${issue.id}`}
           className=" flex justify-center items-center gap-2"
