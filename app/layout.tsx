@@ -6,6 +6,7 @@ import "@radix-ui/themes/styles.css";
 import "./globals.css";
 import "./theme-config.css";
 import AuthProvider from "./context/authProvider";
+import QueryClientProvider from "./context/QueryClientProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter'});
 
@@ -18,6 +19,7 @@ export default function RootLayout({children,}: Readonly<{ children: React.React
   return (
     <html lang="en">
       <body className={inter.variable}>
+        <QueryClientProvider>
         <AuthProvider>
         <Theme appearance="light" accentColor="violet">
             <NavBar />
@@ -28,6 +30,7 @@ export default function RootLayout({children,}: Readonly<{ children: React.React
               </main>
         </Theme>
         </AuthProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );
