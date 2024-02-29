@@ -1,7 +1,7 @@
 'use client';
 
 import React from "react";
-import { Table } from "@radix-ui/themes";
+import { Table, Text } from "@radix-ui/themes";
 import IssueStatusBadge from "../../components/IssueStatusBadge";
 import { useRouter } from "next/navigation";
 import {Issue} from '@prisma/client'
@@ -34,7 +34,7 @@ const IssuesTable = ({issues}: Props) => {
             onClick={() => router.push(`/issues/${issue.id}`)}
           >
             <Table.Cell className="">
-              {issue.title}
+              <Text color="violet">{issue.title}</Text>
               <div className="block md:hidden">
                 <IssueStatusBadge status={issue.status} />
               </div>
