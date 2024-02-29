@@ -1,5 +1,7 @@
 "use client";
 
+
+
 import { usePathname } from "next/navigation";
 import React from "react";
 import classnames from "classnames";
@@ -7,6 +9,8 @@ import { SiOpenbugbounty } from "react-icons/si";
 import { useSession } from "next-auth/react";
 import { Avatar, Box, DropdownMenu, Text } from "@radix-ui/themes";
 import Link from "next/link";
+import Skeleton from "react-loading-skeleton";
+
 
 const NavBar = () => {
   const currentPath = usePathname();
@@ -16,6 +20,8 @@ const NavBar = () => {
     { label: "Dashboard", href: "/" },
     { label: "Issues", href: "/issues/list" },
   ];
+
+  if (status === "loading") return <Skeleton width={"3rem"}/>;
 
   return (
     <nav className=" mb-5  py-4 px-5 lg:px-6 border-b">
