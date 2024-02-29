@@ -1,12 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import classnames from "classnames";
 import { SiOpenbugbounty } from "react-icons/si";
 import { useSession } from "next-auth/react";
 import { Avatar, Box, DropdownMenu, Text } from "@radix-ui/themes";
+import Link from "next/link";
 
 const NavBar = () => {
   const currentPath = usePathname();
@@ -33,9 +33,8 @@ const NavBar = () => {
                 <Link
                   href={l.href}
                   className={classnames({
-                    "text-zinc-900": currentPath === l.href,
-                    "text-zinc-500": currentPath != l.href,
-                    "hover:text-zinc-800 transition": true,
+                    "nav-link": true,
+                    "!text-zinc-900": currentPath === l.href,
                   })}
                 >
                   {l.label}
@@ -63,13 +62,13 @@ const NavBar = () => {
                   <Text size={"2"}>{session.user!.email}</Text>
                 </DropdownMenu.Label>
                 <DropdownMenu.Item>
-                  <Link href={"api/auth/signin"}>Login</Link>
+                  <Link href={"/api/auth/signout"}>Log out</Link>
                 </DropdownMenu.Item>
               </DropdownMenu.Content>
             </DropdownMenu.Root>
           )}
           {status === "unauthenticated" && (
-            <Link href={"api/auth/signin"}>Login</Link>
+            <Link className="nav-link" href={"/api/auth/signin"}>Login</Link>
           )}
         </Box>
       </div>
