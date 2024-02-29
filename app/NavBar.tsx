@@ -1,7 +1,5 @@
 "use client";
 
-
-
 import { usePathname } from "next/navigation";
 import React from "react";
 import classnames from "classnames";
@@ -11,7 +9,6 @@ import { Avatar, Box, DropdownMenu, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import Skeleton from "react-loading-skeleton";
 
-
 const NavBar = () => {
   const currentPath = usePathname();
   const { status, data: session } = useSession();
@@ -20,8 +17,6 @@ const NavBar = () => {
     { label: "Dashboard", href: "/" },
     { label: "Issues", href: "/issues/list" },
   ];
-
-  if (status === "loading") return <Skeleton width={"3rem"}/>;
 
   return (
     <nav className=" mb-5  py-4 px-5 lg:px-6 border-b">
@@ -50,6 +45,12 @@ const NavBar = () => {
           </ul>
         </div>
         <Box>
+          {status === "loading" && <Skeleton width={"3rem"} />}
+          {status === "unauthenticated" && (
+            <Link className="nav-link" href={"/api/auth/signin"}>
+              Login
+            </Link>
+          )}
           {status === "authenticated" && (
             <DropdownMenu.Root>
               <DropdownMenu.Trigger>
@@ -62,9 +63,7 @@ const NavBar = () => {
               </DropdownMenu.Trigger>
               <DropdownMenu.Content>
                 <DropdownMenu.Label>
-                  <Box>
-
-                  </Box>
+                  <Box></Box>
                   <Text size={"2"}>{session.user!.email}</Text>
                 </DropdownMenu.Label>
                 <DropdownMenu.Item>
@@ -72,9 +71,6 @@ const NavBar = () => {
                 </DropdownMenu.Item>
               </DropdownMenu.Content>
             </DropdownMenu.Root>
-          )}
-          {status === "unauthenticated" && (
-            <Link className="nav-link" href={"/api/auth/signin"}>Login</Link>
           )}
         </Box>
       </div>
