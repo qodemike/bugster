@@ -10,7 +10,7 @@ export async function PATCH(
 ) {
   const session = await getServerSession(authOptions);
 
-  if (!session) return NextResponse.json({}, { status: 401 });
+  if (!session) return NextResponse.json({}, { status: 401, statusText: "No authentication Token!"});
 
   const body = await req.json();
 
