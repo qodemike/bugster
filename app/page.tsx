@@ -1,5 +1,3 @@
-import Image from "next/image";
-import NavBar from "./NavBar";
 import Pagination from "./components/Pagination";
 
 interface Props {
