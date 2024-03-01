@@ -18,7 +18,6 @@ const NavBar = () => {
     { label: "Issues", href: "/issues/list" },
   ];
 
-
   return (
     <nav className=" h-20 mb-5  px-5 lg:px-6 border-b flex  items-center">
       <div className=" w-full flex justify-between items-center ">
