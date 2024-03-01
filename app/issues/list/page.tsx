@@ -8,15 +8,13 @@ const IssuesPage = async () => {
 
   return (
     <div>
-      <div className="mb-5 w-fit cursor-pointer">
-        <IssueActions/>
-      </div>
+      <IssueActions />
       <IssuesTable issues={issues}></IssuesTable>
     </div>
   );
 };
 
-// To force dynamic rendering of this page. 
-export const dynamic = 'force-dynamic';
+// To force dynamic rendering of this page.
+export const dynamic = "force-dynamic";
 
 export default IssuesPage;
