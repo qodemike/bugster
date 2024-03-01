@@ -4,9 +4,8 @@ import { Issue, User } from "@prisma/client";
 import { Select } from "@radix-ui/themes";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React from "react";
-import Skeleton from "react-loading-skeleton";
 import toast, { Toaster } from "react-hot-toast";
+import Skeleton from "react-loading-skeleton";
 
 interface Props {
   issue: Issue;
@@ -33,7 +32,7 @@ const SelectAssignee = ({ issue }: Props) => {
 
   const handleOnChange = (userId: string) => {
     axios
-      .patch("/xapi/issues/" + userId, {
+      .patch("/api/issues/" + userId, {
         assignedToUserId: userId === "0" ? null : userId,
       })
       .catch((err) => {
