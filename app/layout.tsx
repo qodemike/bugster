@@ -19,18 +19,18 @@ export default function RootLayout({children,}: Readonly<{ children: React.React
   return (
     <html lang="en">
       <body className={inter.variable}>
+        <Theme appearance="light" accentColor="violet">
         <QueryClientProvider>
         <AuthProvider>
-        <Theme appearance="light" accentColor="violet">
             <NavBar />
             <main className={" p-7"}>
               <Container>
                 {children}  
               </Container>
               </main>
-        </Theme>
         </AuthProvider>
         </QueryClientProvider>
+        </Theme>
       </body>
     </html>
   );

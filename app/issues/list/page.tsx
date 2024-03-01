@@ -17,7 +17,7 @@ const IssuesPage = async ({ searchParams }: Props) => {
   return (
     <div>
       <IssueActions />
-      <IssuesTable issues={issues}></IssuesTable>
+      <IssuesTable searchParams={searchParams} issues={issues}></IssuesTable>
     </div>
   );
 };
