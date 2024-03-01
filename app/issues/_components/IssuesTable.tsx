@@ -1,29 +1,42 @@
-'use client';
+"use client";
 
 import React from "react";
 import { Table, Text } from "@radix-ui/themes";
 import IssueStatusBadge from "../../components/IssueStatusBadge";
 import { useRouter } from "next/navigation";
-import {Issue} from '@prisma/client'
+import { Issue, Status } from "@prisma/client";
+import Link from "next/link";
+import { ArrowUpIcon } from "@radix-ui/react-icons";
 
-interface Props{
-    issues: Issue[];
+interface Props {
+  searchParams: {status: Status, sortBy?: string};
+  issues: Issue[];
 }
 
-const IssuesTable = ({issues}: Props) => {
+  const columns: { label: string; value: keyof Issue; className?: string }[] = [
+    { label: "Issue", value: "title" },
+    { label: "Status", value: "status", className: "hidden md:table-cell" },
+    { label: "Date Created", value: "createdAt", className: "hidden md:table-cell" },
+  ];
+
+const IssuesTable = ({ issues, searchParams }: Props) => {
   const router = useRouter();
 
   return (
     <Table.Root variant="surface">
-      <Table.Header >
+      <Table.Header>
         <Table.Row>
-          <Table.ColumnHeaderCell>Issue</Table.ColumnHeaderCell>
-          <Table.ColumnHeaderCell className="hidden md:table-cell">
-            Status
-          </Table.ColumnHeaderCell>
-          <Table.ColumnHeaderCell className="hidden md:table-cell">
-            Created
-          </Table.ColumnHeaderCell>
+          {columns.map((column) => (
+            <Table.ColumnHeaderCell  key={column.value}>
+              <div className="flex items-center gap-1">
+              <Link href={{
+                query: {...searchParams, sortBy: column.value }
+              }
+              }>{column.label}</Link>
+              {column.value === searchParams.sortBy && <ArrowUpIcon></ArrowUpIcon>}
+              </div>
+            </Table.ColumnHeaderCell>
+          ))}
         </Table.Row>
       </Table.Header>
       <Table.Body>
