@@ -4,7 +4,7 @@ import IssueStatusFilter from "../list/IssueStatusFilter";
 
 const IssueActions = () => {
   return (
-    <div className=" w-full mb-5 flex justify-between ">
+    <div className=" w-full mb-5 flex justify-between items-center">
       <IssueStatusFilter></IssueStatusFilter>
       <Button href="/issues/new">New Issue</Button>
     </div>

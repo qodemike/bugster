@@ -15,7 +15,7 @@ interface Props {
   issues: Issue[];
 }
 
-export const columns: { label: string; value: sortByType; className?: string }[] = [
+export const columnHeaderData: { label: string; value: sortByType; className?: string }[] = [
   { label: "Issue", value: "title" },
   { label: "Status", value: "status", className: "hidden md:table-cell" },
   {
@@ -32,8 +32,8 @@ const IssuesTable = ({ issues, searchParams }: Props) => {
     <Table.Root variant="surface">
       <Table.Header>
         <Table.Row>
-          {columns.map((column) => (
-            <Table.ColumnHeaderCell key={column.value}>
+          {columnHeaderData.map((column) => (
+            <Table.ColumnHeaderCell key={column.value} className={column.className || ''}>
               <div className="flex items-center gap-1">
                 <Link
                   href={{
@@ -54,12 +54,12 @@ const IssuesTable = ({ issues, searchParams }: Props) => {
         {issues.map((issue) => (
           <Table.Row
             key={issue.id}
-            className="hover:bg-neutral-100 transition cursor-pointer"
+            className=" hover:bg-neutral-100 transition cursor-pointer "
             onClick={() => router.push(`/issues/${issue.id}`)}
           >
             <Table.Cell className="">
-              <Text color="violet">{issue.title}</Text>
-              <div className="block md:hidden">
+              <Text >{issue.title}</Text>
+              <div className="block mt-2 md:hidden">
                 <IssueStatusBadge status={issue.status} />
               </div>
             </Table.Cell>
