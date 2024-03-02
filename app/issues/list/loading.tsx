@@ -3,17 +3,19 @@ import { Table } from "@radix-ui/themes";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import IssueActions from "../_components/IssueActions";
+import delay from 'delay'
 
-const IssuesPageSkeleton = () => {
-  const issues = Array(7).fill(0);
+
+const IssuesPageSkeleton = async () => {
+  const issues = Array(10).fill(0);
 
   return (
     <>
-      <div className="mb-5 w-fit cursor-pointer">
+    <div className="mb-5">
         <IssueActions />
-      </div>
+    </div>
       <Table.Root variant="surface">
-        <Table.Header className="bg-slate-100">
+        <Table.Header >
           <Table.Row>
             <Table.ColumnHeaderCell>Issue</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell className="hidden md:table-cell">
@@ -25,10 +27,9 @@ const IssuesPageSkeleton = () => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {issues.map((issue, index) => (
+          {issues.map((issue) => (
             <Table.Row
-              key={index}
-              className="hover:bg-neutral-100 transition cursor-pointer"
+              key={issue}
             >
               <Table.Cell className="">
                 <Skeleton />

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import NavBar from "./components/NavBar";
-import { Inter } from "next/font/google";
+import { Inter, Roboto } from "next/font/google";
 import { Container, Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import "./globals.css";
@@ -8,7 +8,7 @@ import "./theme-config.css";
 import AuthProvider from "./context/authProvider";
 import QueryClientProvider from "./context/QueryClientProvider";
 
-const inter = Inter({ subsets: ["latin"], variable: '--font-inter'});
+const roboto = Roboto({ subsets: ["latin"], weight: ["300", '500', '900'] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function RootLayout({children,}: Readonly<{ children: React.ReactNode;}>) {
   return (
     <html lang="en">
-      <body className={inter.variable}>
+      <body className={roboto.className}>
         <Theme appearance="light" accentColor="violet">
         <QueryClientProvider>
         <AuthProvider>
