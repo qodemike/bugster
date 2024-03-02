@@ -1,4 +1,4 @@
-import React from "react";
+import React, { cache } from "react";
 import prisma from "@/prisma/client";
 import { notFound } from "next/navigation";
 import { Box, Grid } from "@radix-ui/themes";
@@ -10,7 +10,6 @@ import IssueFormSkeleton from "../_components/IssueFormSkeleton";
 import DeleteIssueButton from "../_components/DeleteIssueButton";
 import SelectAssignee from "./SelectAssignee";
 
-
 const IssueForm = dynamic(() => import("@/app/issues/_components/IssueForm"), {
   ssr: false,
   loading: () => <IssueFormSkeleton />,
@@ -20,10 +19,12 @@ interface Props {
   params: { id: string };
 }
 
+const fetchIssue = cache((issueId: number) =>
+  prisma.issue.findUnique({ where: { id: issueId } })
+);
+
 const IssueDetailPage = async ({ params }: Props) => {
-  const issue = await prisma.issue.findUnique({
-    where: { id: parseInt(params.id) },
-  });
+  const issue = await fetchIssue(parseInt(params.id));
 
   if (!issue) notFound();
 
@@ -33,7 +34,7 @@ const IssueDetailPage = async ({ params }: Props) => {
         <IssueDetails issue={issue} />
       </Box>
       <Box className="col-span-2 flex flex-col gap-5">
-        <SelectAssignee issue={issue}/>
+        <SelectAssignee issue={issue} />
         <Button
           href={`/issues/edit/${issue.id}`}
           className=" flex justify-center items-center gap-2"
@@ -45,5 +46,16 @@ const IssueDetailPage = async ({ params }: Props) => {
     </Grid>
   );
 };
+
+export async function generateMetadata({ params }: Props) {
+  const issue = await prisma.issue.findUnique({
+    where: { id: parseInt(params.id) },
+  });
+
+  return {
+    title: issue?.title,
+    description: "View more details about " + issue?.title + "issue",
+  };
+}
 
 export default IssueDetailPage;

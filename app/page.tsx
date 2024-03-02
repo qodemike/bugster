@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import IssueChart from "./components/IssueChart";
 import IssueSummary from "./components/IssueSummary";
 import LatestIssues from "./components/LatestIssues";
@@ -21,4 +22,9 @@ export default async function Home() {
     </div>
     </>
   );
+}
+
+export const metadata: Metadata = {
+  title: 'Bugster - Dashboard',
+  description: "See a quick summary of issues posted on Bugster from various projects. "
 }

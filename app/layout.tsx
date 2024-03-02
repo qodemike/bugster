@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import NavBar from "./components/NavBar";
-import { Inter, Roboto } from "next/font/google";
-import { Container, Theme } from "@radix-ui/themes";
+import { Roboto } from "next/font/google";
+import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import "./globals.css";
 import "./theme-config.css";
@@ -23,7 +23,7 @@ export default function RootLayout({children,}: Readonly<{ children: React.React
         <QueryClientProvider>
         <AuthProvider>
             <NavBar />
-            <main className={" p-7"}>
+            <main className={"p-7"}>
                 {children}  
               </main>
         </AuthProvider>

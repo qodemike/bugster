@@ -4,7 +4,7 @@ import IssuesTable, { IssueQuery } from "../_components/IssuesTable";
 import IssueActions from "../_components/IssueActions";
 import { Status } from "@prisma/client";
 import Pagination from "@/app/components/Pagination";
-import delay from 'delay'
+import { Metadata } from "next";
 
 interface Props {
   searchParams: IssueQuery;
@@ -37,7 +37,6 @@ const IssuesPage = async ({ searchParams }: Props) => {
 
   const issueCount = await prisma.issue.count({ where: { status } });
 
-  
   return (
     <div className="space-y-5">
       <IssueActions />
@@ -50,6 +49,11 @@ const IssuesPage = async ({ searchParams }: Props) => {
     </div>
   );
 };
+
+export const metadata: Metadata = {
+  title: 'Bugster - Issue List',
+  description: "See full list of project issues, their status and date posted. "
+}
 
 // To force dynamic rendering of this page.
 export const dynamic = "force-dynamic";
