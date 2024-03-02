@@ -10,8 +10,13 @@ import { ArrowUpIcon } from "@radix-ui/react-icons";
 
 export type sortByType = "title" | "status" | "createdAt";
 
+export interface IssueQuery {
+  status: Status; 
+  sortBy?: sortByType;
+  page: string
+}
 interface Props {
-  searchParams: { status: Status; sortBy?: sortByType };
+  searchParams: IssueQuery;
   issues: Issue[];
 }
 
