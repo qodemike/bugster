@@ -12,7 +12,13 @@ export default async function Home() {
 
   return (
     <>
-      <IssueChart open={open} inProgress={inProgress} closed={closed} />
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="flex flex-col gap-5">
+      <IssueSummary open={open} inProgress={inProgress} closed={closed}/>
+      <IssueChart open={open} inProgress={inProgress} closed={closed}/>
+      </div>
+        <LatestIssues/>
+    </div>
     </>
   );
 }

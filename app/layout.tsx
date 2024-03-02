@@ -24,9 +24,7 @@ export default function RootLayout({children,}: Readonly<{ children: React.React
         <AuthProvider>
             <NavBar />
             <main className={" p-7"}>
-              <Container>
                 {children}  
-              </Container>
               </main>
         </AuthProvider>
         </QueryClientProvider>
