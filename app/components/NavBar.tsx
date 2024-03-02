@@ -19,7 +19,7 @@ const NavBar = () => {
   ];
 
   return (
-    <nav className=" h-20 mb-5  px-5 lg:px-6 border-b flex  items-center">
+    <nav className=" h-20  px-5 lg:px-6 border-b flex  items-center">
       <div className=" w-full flex justify-between items-center ">
         <div className="flex items-center gap-10 ">
           <Link href={"/"} className=" relative -top-[1.5px] flex items-center">
@@ -48,7 +48,7 @@ const NavBar = () => {
           {status === "loading" && <Skeleton width={"2.5rem"} height={"2.5rem"} borderRadius={"100%"} />}
           {status === "unauthenticated" && (
             <Link className="nav-link" href={"/api/auth/signin"}>
-              Login
+              Log in
             </Link>
           )}
           {status === "authenticated" && (
