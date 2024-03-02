@@ -38,6 +38,7 @@ const Pagination = ({ itemsCount, pageSize, currentPage }: Props) => {
         </Text>
         </div>
         <Button
+            title="first page"
           color={currentPage == 1 ? 'gray': "violet"}
           variant="classic"
           disabled={currentPage === 1}
@@ -62,6 +63,7 @@ const Pagination = ({ itemsCount, pageSize, currentPage }: Props) => {
           <ChevronRightIcon />
         </Button>
         <Button
+        title="last page"
           color={currentPage == pageCount ? 'gray': "violet"}
           variant="classic"
           disabled={currentPage === pageCount}
