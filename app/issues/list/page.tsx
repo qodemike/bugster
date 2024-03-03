@@ -41,11 +41,13 @@ const IssuesPage = async ({ searchParams }: Props) => {
     <div className="flex flex-col gap-5 ">
       <IssueActions />
       <IssuesTable searchParams={searchParams} issues={issues}></IssuesTable>
+      <div className=" self-end">
         <Pagination
           itemsCount={issueCount}
           pageSize={pageSize}
           currentPage={page}
         />
+        </div>
     </div>
   );
 };

@@ -35,7 +35,7 @@ const IssuesTable = ({ issues, searchParams }: Props) => {
   const router = useRouter();
 
   return (
-    <div className="rounded border">
+    <div className="rounded-lg border">
     <Table >
       <TableHeader>
         <TableRow>

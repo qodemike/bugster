@@ -13,18 +13,18 @@ const IssueStatusBadge = ({ status }: Props) => {
   const statusMap: Record<Status, { label: string; color: string }> = {
     OPEN: {
       label: "Open",
-      color: `${theme === "dark" ? "text-red-400" : "text-red-700"} bg-red-500`,
+      color: `${theme === "light"  ? "text-red-700" : "text-red-400"} bg-red-500`,
     },
     IN_PROGRESS: {
       label: "In Progress",
       color: `${
-        theme === "dark" ? "text-blue-400" : "text-blue-700"
+        theme === "light" ? "text-blue-700" : "text-blue-400"
       } bg-blue-500`,
     },
     CLOSED: {
       label: "Closed",
       color: `${
-        theme === "dark" ? "text-green-400" : "text-green-700"
+        theme === "light" ? "text-green-700" : "text-green-400"
       } bg-green-500`,
     },
   };
