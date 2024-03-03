@@ -5,10 +5,11 @@ import React from "react";
 import classnames from "classnames";
 import { SiOpenbugbounty } from "react-icons/si";
 import { useSession } from "next-auth/react";
-import { Avatar, Box, DropdownMenu, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import Skeleton from "react-loading-skeleton";
 import { ModeToggle } from "@/components/theme-mode-switch";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Avatar,  AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const NavBar = () => {
   const currentPath = usePathname();
@@ -47,7 +48,7 @@ const NavBar = () => {
         </div>
          <ModeToggle/>         
 
-        <Box>
+        <div>
           {status === "loading" && <Skeleton width={"2.5rem"} height={"2.5rem"} borderRadius={"100%"} />}
           {status === "unauthenticated" && (
             <Link className="nav-link" href={"/api/auth/signin"}>
@@ -55,27 +56,27 @@ const NavBar = () => {
             </Link>
           )}
           {status === "authenticated" && (
-            <DropdownMenu.Root>
-              <DropdownMenu.Trigger>
-                <Avatar
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Avatar>
+                  <AvatarImage
                   src={session.user!.image!}
-                  fallback="?"
-                  radius="full"
-                  className="cursor-pointer"
-                />
-              </DropdownMenu.Trigger>
-              <DropdownMenu.Content>
-                <DropdownMenu.Label>
-                  <Box></Box>
-                  <Text size={"2"}>{session.user!.email}</Text>
-                </DropdownMenu.Label>
-                <DropdownMenu.Item>
+                  />
+                  <AvatarFallback>?</AvatarFallback>
+                </Avatar>
+
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>
+                  <span >{session.user!.email}</span>
+                </DropdownMenuLabel>
+                <DropdownMenuItem>
                   <Link href={"/api/auth/signout"}>Log out</Link>
-                </DropdownMenu.Item>
-              </DropdownMenu.Content>
-            </DropdownMenu.Root>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           )}
-        </Box>
+        </div>
       </div>
     </nav>
   );

@@ -26,12 +26,11 @@ const IssueSummary = ({ open, inProgress, closed }: Props) => {
         <Link
           key={container.title}
           href={`/issues/list?status=${container.status}`}
+          className="flex-1 flex-grow"
         >
-          <Card>
-            <CardHeader>
-              <CardTitle> {container.title}</CardTitle>
-              <CardContent>{container.value}</CardContent>
-            </CardHeader>
+          <Card className="p-6 flex-grow  flex flex-col gap-2">
+              <CardTitle className="text-base font-medium">{container.title}</CardTitle>
+              <CardContent className="p-0 font-bold text-3xl">+{container.value}</CardContent>
           </Card>
         </Link>
       ))}

@@ -1,8 +1,10 @@
 import React from "react";
 import prisma from "@/prisma/client";
-import { Avatar, Card, Heading, Table } from "@radix-ui/themes";
+import Link from "next/link";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { Card } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import IssueStatusBadge from "./IssueStatusBadge";
-import Link from 'next/link';
 
 const LatestIssues = async () => {
   const issues = await prisma.issue.findMany({
@@ -14,32 +16,30 @@ const LatestIssues = async () => {
   });
 
   return (
-    <Card>
-      <Heading mb={"2"} ml={"2"} size={"6"} >Recent Issues</Heading>
-      <Table.Root>
-        <Table.Body>
+    <Card className="p-6">
+      <h1 className="mb-2 text-2xl">Recent Issues</h1>
+      <Table>
+        <TableBody>
           {issues.map((issue) => (
-            <Table.Row key={issue.id}>
-              <Table.Cell >
+            <TableRow key={issue.id}>
+              <TableCell>
                 <div className=" flex">
                   <div className="flex flex-col items-start gap-2 ">
                     <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
                     <IssueStatusBadge status={issue.status} />
                   </div>
                   {issue.assignedToUser && (
-                    <Avatar
-                      fallback="?"
-                      src={issue.assignedToUser.image!}
-                      size={"2"}
-                      radius="full"
-                    />
+                    <Avatar>
+                      <AvatarImage src={issue.assignedToUser.image!} />
+                      <AvatarFallback>?</AvatarFallback>
+                    </Avatar>
                   )}
                 </div>
-              </Table.Cell>
-            </Table.Row>
+              </TableCell>
+            </TableRow>
           ))}
-        </Table.Body>
-      </Table.Root>
+        </TableBody>
+      </Table>
     </Card>
   );
 };
