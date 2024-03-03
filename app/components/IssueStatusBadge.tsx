@@ -1,24 +1,45 @@
 import React from "react";
 import { Status } from "@prisma/client";
-import { Badge } from "@radix-ui/themes";
+import { useTheme } from "next-themes";
 
 interface Props {
   status: Status;
 }
 
 // Record is a utillity type that allow us to define types of key and value in an object
-const statusMap: Record<
-  Status,
-  { label: string; color: "red" | "violet" | "green" }
-> = {
-  OPEN: { label: "Open", color: "red" },
-  IN_PROGRESS: { label: "In Progress", color: "violet" },
-  CLOSED: { label: "Closed", color: "green" },
-};
 
 const IssueStatusBadge = ({ status }: Props) => {
+  const { theme } = useTheme();
+  const statusMap: Record<Status, { label: string; color: string }> = {
+    OPEN: {
+      label: "Open",
+      color: `${theme === "dark" ? "text-red-400" : "text-red-700"} bg-red-500`,
+    },
+    IN_PROGRESS: {
+      label: "In Progress",
+      color: `${
+        theme === "dark" ? "text-blue-400" : "text-blue-700"
+      } bg-blue-500`,
+    },
+    CLOSED: {
+      label: "Closed",
+      color: `${
+        theme === "dark" ? "text-green-400" : "text-green-700"
+      } bg-green-500`,
+    },
+  };
+
   return (
-    <Badge color={statusMap[status].color}>{statusMap[status].label}</Badge>
+    <div>
+      <div
+        className={
+          "w-[100px] py-1 bg-opacity-30 rounded-full flex justify-center items-center " +
+          statusMap[status].color
+        }
+      >
+        {statusMap[status].label}
+      </div>
+    </div>
   );
 };
 

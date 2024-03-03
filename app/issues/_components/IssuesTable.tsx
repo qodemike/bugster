@@ -7,6 +7,7 @@ import { Issue, Status } from "@prisma/client";
 import Link from "next/link";
 import { ArrowUpIcon } from "@radix-ui/react-icons";
 import { Table, TableHeader, TableRow, TableHead, TableBody , TableCell} from '@/components/ui/table'
+import { Button } from "@/components/ui/button";
 
 export type sortByType = "title" | "status" | "createdAt";
 
@@ -34,6 +35,7 @@ const IssuesTable = ({ issues, searchParams }: Props) => {
   const router = useRouter();
 
   return (
+    <div className="rounded border">
     <Table >
       <TableHeader>
         <TableRow>
@@ -59,11 +61,11 @@ const IssuesTable = ({ issues, searchParams }: Props) => {
         {issues.map((issue) => (
           <TableRow
             key={issue.id}
-            className=" hover:bg-neutral-100 transition cursor-pointer "
-            onClick={() => router.push(`/issues/${issue.id}`)}
           >
             <TableCell className="">
-              {issue.title}
+              <Button variant='link' className="h-2 p-0">
+                <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
+              </Button>
               <div className="block mt-2 md:hidden">
                 <IssueStatusBadge status={issue.status} />
               </div>
@@ -78,6 +80,7 @@ const IssuesTable = ({ issues, searchParams }: Props) => {
         ))}
       </TableBody>
     </Table>
+    </div>
   );
 };
 
