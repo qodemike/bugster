@@ -1,9 +1,9 @@
 "use client";
 
 import { Status } from "@prisma/client";
-import { Select } from "@radix-ui/themes";
 import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
+import { Select,SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 const statuses: { label: string; value: Status | null }[] = [
   { label: "All", value: null },
@@ -29,19 +29,22 @@ const IssueStatusFilter = () => {
   };
 
   return (
-    <Select.Root onValueChange={handleOnChange}>
-      <Select.Trigger
+    <Select onValueChange={handleOnChange}>
+      <SelectTrigger
         style={{ cursor: "pointer" }}
+        >
+        <SelectValue
         placeholder="Filter by status..."
-      ></Select.Trigger>
-      <Select.Content>
+        />
+      </SelectTrigger>
+      <SelectContent>
         {statuses.map((status) => (
-          <Select.Item key={status.value} value={status.value!}>
+          <SelectItem key={status.value} value={status.value!}>
             {status.label}
-          </Select.Item>
+          </SelectItem>
         ))}
-      </Select.Content>
-    </Select.Root>
+      </SelectContent>
+    </Select>
   );
 };
 
