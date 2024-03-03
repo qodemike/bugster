@@ -26,7 +26,7 @@ const IssueChart = ({ open, inProgress, closed }: Props) => {
           <CartesianGrid strokeDasharray="5 5" />
           <Tooltip/>
           <Legend/>
-          <Bar dataKey="issues" barSize={60} fill="var(--accent-9)"/>
+          <Bar dataKey="issues" barSize={60} fill=""/>
         </BarChart>
       </ResponsiveContainer>
     </Card>

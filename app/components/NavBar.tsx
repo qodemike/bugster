@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 import { Avatar, Box, DropdownMenu, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import Skeleton from "react-loading-skeleton";
+import { ModeToggle } from "@/components/theme-mode-switch";
 
 const NavBar = () => {
   const currentPath = usePathname();
@@ -44,6 +45,8 @@ const NavBar = () => {
             ))}
           </ul>
         </div>
+         <ModeToggle/>         
+
         <Box>
           {status === "loading" && <Skeleton width={"2.5rem"} height={"2.5rem"} borderRadius={"100%"} />}
           {status === "unauthenticated" && (

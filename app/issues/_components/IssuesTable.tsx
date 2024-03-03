@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import { Table, Text } from "@radix-ui/themes";
 import IssueStatusBadge from "../../components/IssueStatusBadge";
 import { useRouter } from "next/navigation";
 import { Issue, Status } from "@prisma/client";
 import Link from "next/link";
 import { ArrowUpIcon } from "@radix-ui/react-icons";
+import { Table, TableHeader, TableRow, TableHead, TableBody , TableCell} from '@/components/ui/table'
 
 export type sortByType = "title" | "status" | "createdAt";
 
@@ -34,11 +34,11 @@ const IssuesTable = ({ issues, searchParams }: Props) => {
   const router = useRouter();
 
   return (
-    <Table.Root variant="surface">
-      <Table.Header>
-        <Table.Row>
+    <Table >
+      <TableHeader>
+        <TableRow>
           {columnHeaderData.map((column) => (
-            <Table.ColumnHeaderCell key={column.value} className={column.className || ''}>
+            <TableHead key={column.value} className={column.className || ''}>
               <div className="flex items-center gap-1">
                 <Link
                   href={{
@@ -51,33 +51,33 @@ const IssuesTable = ({ issues, searchParams }: Props) => {
                   <ArrowUpIcon></ArrowUpIcon>
                 )}
               </div>
-            </Table.ColumnHeaderCell>
+            </TableHead>
           ))}
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
         {issues.map((issue) => (
-          <Table.Row
+          <TableRow
             key={issue.id}
             className=" hover:bg-neutral-100 transition cursor-pointer "
             onClick={() => router.push(`/issues/${issue.id}`)}
           >
-            <Table.Cell className="">
-              <Text >{issue.title}</Text>
+            <TableCell className="">
+              {issue.title}
               <div className="block mt-2 md:hidden">
                 <IssueStatusBadge status={issue.status} />
               </div>
-            </Table.Cell>
-            <Table.Cell className="hidden md:table-cell">
+            </TableCell>
+            <TableCell className="hidden md:table-cell">
               <IssueStatusBadge status={issue.status} />
-            </Table.Cell>
-            <Table.Cell className="hidden md:table-cell">
+            </TableCell>
+            <TableCell className="hidden md:table-cell">
               {issue.createdAt.toDateString()}
-            </Table.Cell>
-          </Table.Row>
+            </TableCell>
+          </TableRow>
         ))}
-      </Table.Body>
-    </Table.Root>
+      </TableBody>
+    </Table>
   );
 };
 
