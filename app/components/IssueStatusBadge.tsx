@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 import { Status } from "@prisma/client";
 import { useTheme } from "next-themes";
@@ -10,6 +12,7 @@ interface Props {
 
 const IssueStatusBadge = ({ status }: Props) => {
   const { theme } = useTheme();
+  
   const statusMap: Record<Status, { label: string; color: string }> = {
     OPEN: {
       label: "Open",
