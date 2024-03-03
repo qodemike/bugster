@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ResponsiveContainer,Tooltip, Legend, BarChart, XAxis, YAxis, CartesianGrid, Bar } from "recharts";
+import { ResponsiveContainer,Tooltip, Legend, BarChart, XAxis, YAxis, Bar } from "recharts";
 import { Card } from "@/components/ui/card";
 
 interface Props {
@@ -18,12 +18,12 @@ const IssueChart = ({ open, inProgress, closed }: Props) => {
   ];
 
   return (
-    <Card>
-      <ResponsiveContainer width="100%" height={350}>
+    <Card className="overflow-hidden flex flex-col justify-center items-center gap-5 ">
+      <h2 className="font-bold">Overview</h2>
+      <ResponsiveContainer width="100%" height={400} className="relative right-4">
         <BarChart data={data}>
           <XAxis dataKey="label" />
           <YAxis />
-          <CartesianGrid strokeDasharray="5 5" />
           <Tooltip/>
           <Legend/>
           <Bar dataKey="issues" barSize={60} fill=""/>
