@@ -33,10 +33,10 @@ const IssueStatusBadge = ({ status }: Props) => {
   };
 
   return (
-    <div>
+    <div className="text-xs">
       <div
         className={
-          "w-[100px] py-1 bg-opacity-30 rounded-full flex justify-center items-center " +
+          "w-[85px] py-1 bg-opacity-30 rounded-full flex justify-center items-center " +
           statusMap[status].color
         }
       >

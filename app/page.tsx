@@ -10,15 +10,23 @@ export default async function Home() {
     where: { status: "IN_PROGRESS" },
   });
   const closed = await prisma.issue.count({ where: { status: "CLOSED" } });
+  const total = open+inProgress+closed;
 
   return (
     <>
-        <LatestIssues/>
+    <div className="flex flex-col gap-5">
+      <IssueSummary open={open} inProgress={inProgress} closed={closed} total={total}/>
+      <div className=" grid  md:grid-cols-2 gap-5">
+        <IssueChart open={open} inProgress={inProgress} closed={closed} />
+        <LatestIssues />
+      </div>
+    </div>
     </>
   );
 }
 
 export const metadata: Metadata = {
-  title: 'Bugster - Dashboard',
-  description: "See a quick summary of issues posted on Bugster from various projects. "
-}
+  title: "Bugster - Dashboard",
+  description:
+    "See a quick summary of issues posted on Bugster from various projects. ",
+};
