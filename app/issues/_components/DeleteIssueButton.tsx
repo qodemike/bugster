@@ -1,7 +1,18 @@
 "use client";
 
 import React, { useState } from "react";
-import { Box, Button, AlertDialog } from "@radix-ui/themes";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import {Button} from "@/components/ui/button"
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
@@ -29,32 +40,32 @@ const DeleteIssueButton = ({ issueId }: Props) => {
 
   return (
     <>
-    <AlertDialog.Root >
-      <AlertDialog.Trigger>
+    <AlertDialog >
+      <AlertDialogTrigger>
         <Button disabled={isDeleting} color="red" style={{cursor: "pointer"}}>Delete Issue</Button>
-      </AlertDialog.Trigger>
-      <AlertDialog.Content>
-        <AlertDialog.Title>Confirm Deletion</AlertDialog.Title>
-        <AlertDialog.Description>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogTitle>Confirm Deletion</AlertDialogTitle>
+        <AlertDialogDescription>
           Are you sure you want to delete this issue? This action is irreversible.
-        </AlertDialog.Description>
-        <Box className="mt-5 flex gap-5">
-            <AlertDialog.Cancel>
-                <Button style={{cursor: "pointer"}} variant="soft">Cancel</Button>
-            </AlertDialog.Cancel>
-            <AlertDialog.Action>
+        </AlertDialogDescription>
+        <div className="mt-5 flex gap-5">
+            <AlertDialogCancel>
+                <Button style={{cursor: "pointer"}}>Cancel</Button>
+            </AlertDialogCancel>
+            <AlertDialogAction>
                 <Button style={{cursor: "pointer"}} color="red"  onClick={handleDelete}> Confirm </Button>
-            </AlertDialog.Action>
-        </Box>
-      </AlertDialog.Content>
-    </AlertDialog.Root>
-    <AlertDialog.Root open={error}>
-      <AlertDialog.Content>
-        <AlertDialog.Title>Error</AlertDialog.Title>
-        <AlertDialog.Description>This issue could not be deleted.</AlertDialog.Description>
-        <Button  variant="soft" mt={'5'} onClick={() => setError(false)} >Close </Button>
-      </AlertDialog.Content>
-    </AlertDialog.Root>
+            </AlertDialogAction>
+        </div>
+      </AlertDialogContent>
+    </AlertDialog>
+    <AlertDialog open={error}>
+      <AlertDialogContent>
+        <AlertDialogTitle>Error</AlertDialogTitle>
+        <AlertDialogDescription>This issue could not be deleted.</AlertDialogDescription>
+        <Button onClick={() => setError(false)}> Close </Button>
+      </AlertDialogContent>
+    </AlertDialog>
     </>
   );
 };

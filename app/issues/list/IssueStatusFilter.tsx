@@ -29,13 +29,10 @@ const IssueStatusFilter = () => {
   };
 
   return (
+    <div>
     <Select onValueChange={handleOnChange}>
-      <SelectTrigger
-        style={{ cursor: "pointer" }}
-        >
-        <SelectValue
-        placeholder="Filter by status..."
-        />
+      <SelectTrigger>
+        <SelectValue placeholder="Filter by status... " />
       </SelectTrigger>
       <SelectContent>
         {statuses.map((status) => (
@@ -45,6 +42,7 @@ const IssueStatusFilter = () => {
         ))}
       </SelectContent>
     </Select>
+    </div>
   );
 };
 
