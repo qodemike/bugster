@@ -1,12 +1,13 @@
-import Button from "@/app/components/Button";
+import { Button } from "@/components/ui/button";
 import React from "react";
 import IssueStatusFilter from "../list/IssueStatusFilter";
+import Link from "next/link";
 
 const IssueActions = () => {
   return (
     <div className=" w-full flex justify-between items-center">
       <IssueStatusFilter></IssueStatusFilter>
-      <Button href="/issues/new">New Issue</Button>
+      <Link href={'/issues/new'}><Button> New Issue</Button></Link> 
     </div>
   );
 };

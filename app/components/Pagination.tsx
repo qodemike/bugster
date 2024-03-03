@@ -6,7 +6,8 @@ import {
   DoubleArrowLeftIcon,
   DoubleArrowRightIcon,
 } from "@radix-ui/react-icons";
-import { Button, Text } from "@radix-ui/themes";
+import { Button } from "@/components/ui/button";
+import { Text } from "@radix-ui/themes";
 import { useRouter, useSearchParams } from "next/navigation";
 
 interface Props {
@@ -40,7 +41,7 @@ const Pagination = ({ itemsCount, pageSize, currentPage }: Props) => {
         <Button
             title="first page"
           color={currentPage == 1 ? 'gray': "violet"}
-          variant="classic"
+          variant="outline"
           disabled={currentPage === 1}
           onClick={() => changePage(1)}
         >
@@ -48,7 +49,7 @@ const Pagination = ({ itemsCount, pageSize, currentPage }: Props) => {
         </Button>
         <Button
           color="violet"
-          variant="classic"
+          variant="outline"
           disabled={currentPage === 1}
           onClick={() => changePage(currentPage - 1)}
         >
@@ -56,7 +57,7 @@ const Pagination = ({ itemsCount, pageSize, currentPage }: Props) => {
         </Button>
         <Button
           color="violet"
-          variant="classic"
+          variant="outline"
           disabled={currentPage === pageCount}
           onClick={() => changePage(currentPage + 1)}
         >
@@ -65,7 +66,7 @@ const Pagination = ({ itemsCount, pageSize, currentPage }: Props) => {
         <Button
         title="last page"
           color={currentPage == pageCount ? 'gray': "violet"}
-          variant="classic"
+          variant="outline"
           disabled={currentPage === pageCount}
           onClick={() => changePage(pageCount)}
         >
