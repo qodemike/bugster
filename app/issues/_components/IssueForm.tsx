@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import ErrorMessage from "@/app/components/ErrorMessage";
-import { Callout, TextField } from "@radix-ui/themes";
 import SimpleMDE from "react-simplemde-editor";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,6 +11,10 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import "easymde/dist/easymde.min.css";
 import { Issue } from "@prisma/client";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
+import { Input } from "@/components/ui/input";
+import { Form, FormControl, FormField } from "@/components/ui/form";
 
 type IssueFormData = z.infer<typeof issueValidationSchema>;
 
@@ -21,8 +24,7 @@ interface Props {
 
 const IssueForm = ({ issue }: Props) => {
   const router = useRouter();
-
-  const [error, setError] = useState<string>();
+  const { toast } = useToast();
 
   const {
     register,
@@ -37,41 +39,54 @@ const IssueForm = ({ issue }: Props) => {
     try {
       if (issue) await axios.patch("/api/issues/" + issue.id, data);
       else await axios.post("/api/issues", data);
+      toast({
+        title: "Submitted successfully!",
+        description: "CRUD Operation was a success!",
+      });
       router.push("/issues/list");
       router.refresh();
     } catch (err) {
-      setError("An unexpected error occured");
+      toast({
+        variant: "destructive",
+        title: "Something went wrong!",
+        description: "There was a problem submtting the form. Try Again",
+      });
     }
   };
 
   return (
-    <div className="max-w-xl space-y-5">
-      {error && (
-        <Callout.Root color="red">
-          <Callout.Text>{error}</Callout.Text>
-        </Callout.Root>
-      )}
+    <div>
       <form className=" space-y-3" onSubmit={handleSubmit(onSubmit)}>
-        <TextField.Root>
-          <TextField.Input
-            defaultValue={issue?.title}
-            {...register("title")}
-            placeholder="Title"
-          />
-        </TextField.Root>
-        <ErrorMessage>{errors.title?.message}</ErrorMessage>
-        <Controller
-          defaultValue={issue?.description}
-          name="description"
-          control={control}
-          render={({ field }) => (
-            <SimpleMDE placeholder="Description" {...field} />
-          )}
+        <Input
+          defaultValue={issue?.title}
+          {...register("title")}
+          placeholder="Title"
         />
-        <ErrorMessage>{errors.description?.message}</ErrorMessage>
-        <button className=" px-5 py-2 text-white text-sm font-medium bg-violet-600 hover:bg-violet-700 rounded transition">
-          {issue ? "Update Issue": "Submit Issue" }
-        </button>
+        <div
+          className={`${
+            errors.title?.message ? "h-5" : "h-0"
+          }  transition-all   overflow-hidden `}
+        >
+          <ErrorMessage>{errors.title?.message}</ErrorMessage>
+        </div>
+        <div>
+          <Controller
+            defaultValue={issue?.description}
+            name="description"
+            control={control}
+            render={({ field }) => (
+              <SimpleMDE placeholder="Description" {...field} />
+            )}
+          />
+          <div
+            className={`relative -top-7 ${
+              errors.description?.message ? "h-5" : "h-0"
+            }  transition-all   overflow-hidden `}
+          >
+            <ErrorMessage>{"Issue description is required"}</ErrorMessage>
+          </div>
+        </div>
+        <Button>{issue ? "Update Issue" : "Submit Issue"}</Button>
       </form>
     </div>
   );

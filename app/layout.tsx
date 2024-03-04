@@ -6,6 +6,7 @@ import "./globals.css";
 import AuthProvider from "./context/authProvider";
 import QueryClientProvider from "./context/QueryClientProvider";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,6 +27,7 @@ export default function RootLayout({
             <AuthProvider>
               <NavBar />
               <main className={"p-7"}>{children}</main>
+              <Toaster/>
             </AuthProvider>
           </QueryClientProvider>
           </ThemeProvider>

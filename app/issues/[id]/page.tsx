@@ -2,13 +2,14 @@ import React, { cache } from "react";
 import prisma from "@/prisma/client";
 import { notFound } from "next/navigation";
 import { Box, Grid } from "@radix-ui/themes";
-import Button from "@/app/components/Button";
+import {Button} from "@/components/ui/button";
 import IssueDetails from "./IssueDetails";
 import { Pencil2Icon } from "@radix-ui/react-icons";
 import dynamic from "next/dynamic";
 import IssueFormSkeleton from "../_components/IssueFormSkeleton";
 import DeleteIssueButton from "../_components/DeleteIssueButton";
 import SelectAssignee from "./SelectAssignee";
+import Link from "next/link";
 
 const IssueForm = dynamic(() => import("@/app/issues/_components/IssueForm"), {
   ssr: false,
@@ -35,12 +36,15 @@ const IssueDetailPage = async ({ params }: Props) => {
       </Box>
       <Box className="col-span-2 flex flex-col gap-5">
         <SelectAssignee issue={issue} />
-        <Button
+        <Link 
           href={`/issues/edit/${issue.id}`}
+        >
+        <Button
           className=" flex justify-center items-center gap-2"
         >
           <Pencil2Icon /> Edit Issue
         </Button>
+        </Link>
         <DeleteIssueButton issueId={issue.id} />
       </Box>
     </Grid>

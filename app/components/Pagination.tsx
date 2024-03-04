@@ -7,7 +7,6 @@ import {
   DoubleArrowRightIcon,
 } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
-import { Text } from "@radix-ui/themes";
 import { useRouter, useSearchParams } from "next/navigation";
 
 interface Props {
@@ -34,9 +33,9 @@ const Pagination = ({ itemsCount, pageSize, currentPage }: Props) => {
     <>
       <div className="flex gap-2 items-center">
         <div className="w-24">
-        <Text size={"2"} >
+        <span className="text-sm" >
           Page {currentPage} of {pageCount}
-        </Text>
+        </span>
         </div>
         <Button
             title="first page"
