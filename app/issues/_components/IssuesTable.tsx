@@ -5,7 +5,7 @@ import IssueStatusBadge from "../../components/IssueStatusBadge";
 import { useRouter } from "next/navigation";
 import { Issue, Status } from "@prisma/client";
 import Link from "next/link";
-import { ArrowUpIcon } from "@radix-ui/react-icons";
+import { CaretSortIcon } from "@radix-ui/react-icons";
 import { Table, TableHeader, TableRow, TableHead, TableBody , TableCell} from '@/components/ui/table'
 import { Button } from "@/components/ui/button";
 
@@ -50,7 +50,7 @@ const IssuesTable = ({ issues, searchParams }: Props) => {
                   {column.label}
                 </Link>
                 {column.value === searchParams.sortBy && (
-                  <ArrowUpIcon></ArrowUpIcon>
+                  <CaretSortIcon/>
                 )}
               </div>
             </TableHead>
