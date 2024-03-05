@@ -54,13 +54,14 @@ const SelectAssignee = ({ issue }: Props) => {
   };
 
   return (
-    <>
+    <div className="flex  items-center gap-4">
+      <span  className=" text-sm  font-bold whitespace-nowrap ">Issue Assigned to:</span>
       <Select
         onValueChange={handleOnChange}
         defaultValue={issue.assignedToUserId || ""}
       >
-        <SelectTrigger>
-          <SelectValue placeholder="Select to assign..." />
+        <SelectTrigger className=" flex gap-7">
+          <SelectValue  placeholder="Select to assign issue... " />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
@@ -74,7 +75,7 @@ const SelectAssignee = ({ issue }: Props) => {
           </SelectGroup>
         </SelectContent>
       </Select>
-    </>
+    </div>
   );
 };
 

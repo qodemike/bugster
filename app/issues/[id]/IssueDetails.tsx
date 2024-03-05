@@ -1,6 +1,6 @@
 import IssueStatusBadge from "@/app/components/IssueStatusBadge";
 import { Issue } from "@prisma/client";
-import { Text, Heading, Flex, Card } from "@radix-ui/themes";
+import { Card } from "@/components/ui/card";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
@@ -10,17 +10,23 @@ interface Props {
 
 const IssueDetails = ({ issue }: Props) => {
   return (
-    <>
-      <Heading>{issue.title}</Heading>
-      <Flex className="my-3 space-x-3">
+    <div className="flex flex-col">
+      <h1 className="text-2xl font-bold">{issue.title}</h1>
+      <div className="mt-3 flex items-center gap-5">
+        <div className="">
+          <span className="text-sm">Date Created:</span>
+          <span className="pl-2 text-sm text-muted-foreground">
+            {issue.createdAt.toDateString()}
+          </span>
+        </div>
         <IssueStatusBadge status={issue.status} />
-        <Text>{issue.createdAt.toDateString()}</Text>
-      </Flex>
-
-      <Card className="prose max-w-full"  mt={"5"}>
-        <ReactMarkdown>{issue.description}</ReactMarkdown>
+      </div>
+      <Card className="prose max-w-full mt-7 min-h-52  p-5 ">
+        <span className="md:text-xl font-bold "> Details about the Issue</span>
+        <div className="my-3 border-b"></div>
+        <ReactMarkdown className={" text-muted-foreground"}>{issue.description}</ReactMarkdown>
       </Card>
-    </>
+    </div>
   );
 };
 

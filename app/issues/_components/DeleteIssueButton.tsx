@@ -55,9 +55,9 @@ const DeleteIssueButton = ({ issueId }: Props) => {
           <Button
             disabled={isDeleting}
             variant={"destructive"}
-            className="flex justify-center items-center gap-2"
+            className="flex justify-center items-center gap-1"
           >
-            <TrashIcon  />
+            <TrashIcon className="w-6 h-5" />
             Delete Issue
           </Button>
         </AlertDialogTrigger>

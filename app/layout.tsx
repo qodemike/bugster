@@ -26,7 +26,7 @@ export default function RootLayout({
           <QueryClientProvider>
             <AuthProvider>
               <NavBar />
-              <main className={"p-7 pt-24"}>{children}</main>
+              <main className={"px-5 pt-24 md:px-7 lg:px-9 "}>{children}</main>
               <Toaster/>
             </AuthProvider>
           </QueryClientProvider>

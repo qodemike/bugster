@@ -28,7 +28,7 @@ const LatestIssues = async () => {
         <TableBody>
           {issues.map((issue) => (
             <TableRow key={issue.id} className="">
-              <TableCell className=" justify-start ">
+              <TableCell className="flex justify-between items-center ">
                 <div className=" flex flex-col items-start gap-2 ">
                   <Link href={`/issues/${issue.id}`}>
                     <Button variant="link" className={"h-2 p-0 transition"}>
