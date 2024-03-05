@@ -2,6 +2,7 @@
 
 import React from "react";
 import { ResponsiveContainer,Tooltip, Legend, BarChart, XAxis, YAxis, Bar } from "recharts";
+import { ResponsiveContainer,Tooltip, Legend, BarChart, XAxis, YAxis, Bar } from "recharts";
 import { Card } from "@/components/ui/card";
 
 interface Props {
