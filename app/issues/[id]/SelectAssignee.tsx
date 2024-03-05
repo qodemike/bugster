@@ -1,7 +1,7 @@
 "use client";
 
 import { Issue, User } from "@prisma/client";
-import { Select } from "@radix-ui/themes";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
@@ -42,23 +42,25 @@ const SelectAssignee = ({ issue }: Props) => {
 
   return (
     <>
-      <Select.Root
+      <Select
         onValueChange={handleOnChange}
         defaultValue={issue.assignedToUserId || ""}
       >
-        <Select.Trigger placeholder="Assign to ..." />
-        <Select.Content>
-          <Select.Group>
-            <Select.Label>Suggestions</Select.Label>
-            <Select.Item value="0">Unassigned</Select.Item>
+        <SelectTrigger >
+        <SelectValue placeholder="Select to assign..." />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Suggestions</SelectLabel>
+            <SelectItem value="0">Unassigned</SelectItem>
             {users?.map((user) => (
-              <Select.Item key={user.id} value={user.id}>
+              <SelectItem key={user.id} value={user.id}>
                 {user.name}
-              </Select.Item>
+              </SelectItem>
             ))}
-          </Select.Group>
-        </Select.Content>
-      </Select.Root>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
       <Toaster></Toaster>
     </>
   );

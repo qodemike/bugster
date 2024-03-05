@@ -1,7 +1,6 @@
 import React, { cache } from "react";
 import prisma from "@/prisma/client";
 import { notFound } from "next/navigation";
-import { Box, Grid } from "@radix-ui/themes";
 import {Button} from "@/components/ui/button";
 import IssueDetails from "./IssueDetails";
 import { Pencil2Icon } from "@radix-ui/react-icons";
@@ -30,11 +29,11 @@ const IssueDetailPage = async ({ params }: Props) => {
   if (!issue) notFound();
 
   return (
-    <Grid columns={{ initial: "1", sm: "5" }} gap={"5"}>
-      <Box className=" md:col-span-3">
+    <div className=" grid grid-cols-1 sm:grid-cols-5 gap-5" >
+      <div className=" md:col-span-3">
         <IssueDetails issue={issue} />
-      </Box>
-      <Box className="col-span-2 flex flex-col gap-5">
+      </div>
+      <div className="col-span-2 flex flex-col gap-5">
         <SelectAssignee issue={issue} />
         <Link 
           href={`/issues/edit/${issue.id}`}
@@ -46,8 +45,8 @@ const IssueDetailPage = async ({ params }: Props) => {
         </Button>
         </Link>
         <DeleteIssueButton issueId={issue.id} />
-      </Box>
-    </Grid>
+      </div>
+    </div>
   );
 };
 

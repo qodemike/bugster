@@ -11,61 +11,72 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-import {Button} from "@/components/ui/button"
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { TrashIcon } from "@radix-ui/react-icons";
+import { useToast } from "@/components/ui/use-toast";
 
-interface Props{
+interface Props {
   issueId: number;
 }
 
 const DeleteIssueButton = ({ issueId }: Props) => {
   const router = useRouter();
-  const [error, setError] = useState(false);
+  const { toast } = useToast()
   const [isDeleting, setDeleting] = useState(false);
 
   const handleDelete = async () => {
     try {
       setDeleting(true);
-      await axios.delete('/api/issues/'+issueId);
-      router.push('/issues/list');
+      await axios.delete("/api/issues/" + issueId);
+      setDeleting(false);
+      toast({
+        title: "Sucessful Deletion!",
+        description: "The issue was deleted succesfully!",
+      });
+      router.push("/issues/list");
       router.refresh();
+    } catch (err) {
+      setDeleting(false);
+      toast({
+        variant: "destructive",
+        title: "Failed to Delete!",
+        description: "This issue could not be deleted. Try Again!",
+      });
     }
-    catch(err) {
-        setDeleting(false);
-        setError(true)
-    }
-  }
+  };
 
   return (
     <>
-    <AlertDialog >
-      <AlertDialogTrigger>
-        <Button disabled={isDeleting} color="red" style={{cursor: "pointer"}}>Delete Issue</Button>
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogTitle>Confirm Deletion</AlertDialogTitle>
-        <AlertDialogDescription>
-          Are you sure you want to delete this issue? This action is irreversible.
-        </AlertDialogDescription>
-        <div className="mt-5 flex gap-5">
-            <AlertDialogCancel>
-                <Button style={{cursor: "pointer"}}>Cancel</Button>
-            </AlertDialogCancel>
-            <AlertDialogAction>
-                <Button style={{cursor: "pointer"}} color="red"  onClick={handleDelete}> Confirm </Button>
+      <AlertDialog>
+        <AlertDialogTrigger>
+          <Button
+            disabled={isDeleting}
+            variant={"destructive"}
+            className="flex justify-center items-center gap-2"
+          >
+            <TrashIcon  />
+            Delete Issue
+          </Button>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Confirm Deletion</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to delete this issue? This action is
+              irreversible.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter >
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDelete}>
+              Confirm
             </AlertDialogAction>
-        </div>
-      </AlertDialogContent>
-    </AlertDialog>
-    <AlertDialog open={error}>
-      <AlertDialogContent>
-        <AlertDialogTitle>Error</AlertDialogTitle>
-        <AlertDialogDescription>This issue could not be deleted.</AlertDialogDescription>
-        <Button onClick={() => setError(false)}> Close </Button>
-      </AlertDialogContent>
-    </AlertDialog>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   );
 };
