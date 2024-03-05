@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import React from "react";
-import classnames from "classnames";
 import { SiOpenbugbounty } from "react-icons/si";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -21,7 +20,7 @@ const NavBar = () => {
   ];
 
   return (
-    <nav className=" h-20  px-5 lg:px-6 border-b flex  items-center">
+    <nav className=" fixed z-20 w-screen h-16  px-5 lg:px-12 bg-background border-b flex  items-center">
       <div className=" w-full flex justify-between items-center ">
         <div className="flex items-center gap-10 ">
           <Link href={"/"} className=" relative -top-[1.5px] flex items-center">
@@ -30,15 +29,12 @@ const NavBar = () => {
               Bugster
             </span>
           </Link>
-          <ul className="flex gap-7">
+          <ul className="flex items-center gap-7">
             {links.map((l) => (
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className={classnames({
-                    "nav-link": true,
-                    "!text-zinc-900": currentPath === l.href,
-                  })}
+                  className={`text-sm text-muted-foreground font-medium ${currentPath === l.href ? " text-foreground  " : '' } `}
                 >
                   {l.label}
                 </Link>
@@ -46,9 +42,8 @@ const NavBar = () => {
             ))}
           </ul>
         </div>
+        <div className="flex items-center gap-10">
          <ModeToggle/>         
-
-        <div>
           {status === "loading" && <Skeleton width={"2.5rem"} height={"2.5rem"} borderRadius={"100%"} />}
           {status === "unauthenticated" && (
             <Link className="nav-link" href={"/api/auth/signin"}>
