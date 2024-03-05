@@ -21,7 +21,6 @@ export default async function Home() {
         <IssueChart open={open} inProgress={inProgress} closed={closed} />
         <LatestIssues />
       </div>
-      <Playground/>
     </div>
     </>
   );
