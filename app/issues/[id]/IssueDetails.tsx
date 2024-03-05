@@ -24,7 +24,7 @@ const IssueDetails = ({ issue }: Props) => {
       <Card className="prose max-w-full mt-7 min-h-52  p-5 ">
         <span className="md:text-xl font-bold "> Details about the Issue</span>
         <div className="my-3 border-b"></div>
-        <ReactMarkdown className={" text-muted-foreground"}>{issue.description}</ReactMarkdown>
+        <ReactMarkdown className={" text-sm md:text-base text-muted-foreground"}>{issue.description}</ReactMarkdown>
       </Card>
     </div>
   );

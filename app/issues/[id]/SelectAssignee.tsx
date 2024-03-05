@@ -20,6 +20,7 @@ interface Props {
 }
 
 const SelectAssignee = ({ issue }: Props) => {
+  
   const { toast } = useToast();
   const {
     data: users,
