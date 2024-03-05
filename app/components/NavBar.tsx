@@ -40,8 +40,8 @@ const NavBar = () => {
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className={`text-sm text-muted-foreground font-medium  ${
-                    currentPath === l.href ? " text-accent-foreground  " : ""
+                  className={`text-sm text-muted-foreground font-medium dark:hover:text-secondary-foreground/80  ${
+                    currentPath === l.href ? " text-black dark:text-secondary-foreground  " : ""
                   } `}
                 >
                   {l.label}
