@@ -5,6 +5,7 @@ import IssueActions from "../_components/IssueActions";
 import { Status } from "@prisma/client";
 import Pagination from "@/app/components/Pagination";
 import { Metadata } from "next";
+import delay from 'delay';
 
 interface Props {
   searchParams: IssueQuery;
@@ -12,7 +13,7 @@ interface Props {
 const sortOptions = ["title", "status", "createdAt"];
 
 const IssuesPage = async ({ searchParams }: Props) => {
-  
+  await delay(5000);
   // Make sure the status is valid before search
   const statuses = Object.values(Status);
   const status = statuses.includes(searchParams.status)

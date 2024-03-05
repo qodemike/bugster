@@ -7,7 +7,7 @@ const IssueActions = () => {
   return (
     <div className=" w-full flex justify-between items-center">
       <IssueStatusFilter></IssueStatusFilter>
-      <Link href={'/issues/new'}><Button variant="secondary" className=""> New Issue</Button></Link> 
+      <Link href={'/issues/new'}><Button className="dark:bg-primary  dark:text-accent-foreground "> New Issue</Button></Link> 
     </div>
   );
 };
