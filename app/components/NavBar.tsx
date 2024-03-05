@@ -7,8 +7,14 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Skeleton from "react-loading-skeleton";
 import { ModeToggle } from "@/components/theme-mode-switch";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Avatar,  AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const NavBar = () => {
   const currentPath = usePathname();
@@ -34,7 +40,9 @@ const NavBar = () => {
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className={`text-sm text-muted-foreground font-medium ${currentPath === l.href ? " text-foreground  " : '' } `}
+                  className={`text-sm text-muted-foreground font-medium  ${
+                    currentPath === l.href ? " text-accent-foreground  " : ""
+                  } `}
                 >
                   {l.label}
                 </Link>
@@ -43,8 +51,14 @@ const NavBar = () => {
           </ul>
         </div>
         <div className="flex items-center gap-10">
-         <ModeToggle/>         
-          {status === "loading" && <Skeleton width={"2.5rem"} height={"2.5rem"} borderRadius={"100%"} />}
+          <ModeToggle />
+          {status === "loading" && (
+            <Skeleton
+              width={"2.5rem"}
+              height={"2.5rem"}
+              borderRadius={"100%"}
+            />
+          )}
           {status === "unauthenticated" && (
             <Link className="nav-link" href={"/api/auth/signin"}>
               Log in
@@ -54,16 +68,13 @@ const NavBar = () => {
             <DropdownMenu>
               <DropdownMenuTrigger>
                 <Avatar>
-                  <AvatarImage
-                  src={session.user!.image!}
-                  />
+                  <AvatarImage src={session.user!.image!} />
                   <AvatarFallback>?</AvatarFallback>
                 </Avatar>
-
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuLabel>
-                  <span >{session.user!.email}</span>
+                  <span>{session.user!.email}</span>
                 </DropdownMenuLabel>
                 <DropdownMenuItem>
                   <Link href={"/api/auth/signout"}>Log out</Link>

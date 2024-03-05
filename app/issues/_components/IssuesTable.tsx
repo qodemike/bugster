@@ -73,7 +73,7 @@ const IssuesTable = ({ issues, searchParams }: Props) => {
             <TableCell className="hidden md:table-cell">
               <IssueStatusBadge status={issue.status} />
             </TableCell>
-            <TableCell className="hidden md:table-cell">
+            <TableCell className=" dark:text-muted-foreground hidden md:table-cell">
               {issue.createdAt.toDateString()}
             </TableCell>
           </TableRow>
