@@ -1,17 +1,26 @@
 "use client";
 
 import { Issue, User } from "@prisma/client";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import toast, { Toaster } from "react-hot-toast";
-import Skeleton from "react-loading-skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useToast } from "@/components/ui/use-toast";
 
 interface Props {
   issue: Issue;
 }
 
 const SelectAssignee = ({ issue }: Props) => {
+  const { toast } = useToast();
   const {
     data: users,
     error,
@@ -26,17 +35,21 @@ const SelectAssignee = ({ issue }: Props) => {
     staleTime: 60 * 1000,
   });
 
-  if (isLoading) return <Skeleton height={"32px"}></Skeleton>;
+  if (isLoading) return <Skeleton className="h-9"></Skeleton>;
 
   if (error) return null;
 
-  const handleOnChange = (userId: string) => {
+  const handleOnChange =  (userId: string) => {
     axios
-      .patch("/api/issues/" + userId, {
+      .patch("/api/issues/" + issue.id, {
         assignedToUserId: userId === "0" ? null : userId,
-      })
+      }).then()
       .catch((err) => {
-        toast.error("Failed to assign issue");
+        toast({
+          variant: "destructive",
+          title: "Failed to Assign Issue!",
+          description: "Operation failed to assign Issue. Try Again!",
+        });
       });
   };
 
@@ -46,8 +59,8 @@ const SelectAssignee = ({ issue }: Props) => {
         onValueChange={handleOnChange}
         defaultValue={issue.assignedToUserId || ""}
       >
-        <SelectTrigger >
-        <SelectValue placeholder="Select to assign..." />
+        <SelectTrigger>
+          <SelectValue placeholder="Select to assign..." />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
@@ -61,7 +74,6 @@ const SelectAssignee = ({ issue }: Props) => {
           </SelectGroup>
         </SelectContent>
       </Select>
-      <Toaster></Toaster>
     </>
   );
 };
