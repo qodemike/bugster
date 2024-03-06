@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import React from "react";
-import { SiOpenbugbounty } from "react-icons/si";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Skeleton from "react-loading-skeleton";
@@ -16,6 +15,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
+import NavLogo from "./NavLogo";
+
 const NavBar = () => {
   const currentPath = usePathname();
   const { status, data: session } = useSession();
@@ -26,22 +27,19 @@ const NavBar = () => {
   ];
 
   return (
-    <nav className=" fixed z-20 w-screen h-16  px-5 lg:px-12 bg-background border-b flex  items-center">
+    <nav className=" fixed z-20 w-screen h-16  px-5 md:px-7 lg:px-9 bg-background border-b flex  items-center">
       <div className=" w-full flex justify-between items-center ">
-        <div className="flex items-center gap-10 ">
-          <Link href={"/"} className=" relative -top-[1.5px] flex items-center">
-            <SiOpenbugbounty size={35} />
-            <span className="font-extrabold font-[Inter] text-2xl">
-              Bugster
-            </span>
-          </Link>
-          <ul className="flex items-center gap-7">
+        <div className="flex items-end gap-10 ">
+          <NavLogo />
+          <ul className="flex items-end gap-7">
             {links.map((l) => (
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className={`text-sm text-muted-foreground font-medium dark:hover:text-secondary-foreground/80  ${
-                    currentPath === l.href ? " text-black dark:text-secondary-foreground  " : ""
+                  className={`text-sm text-muted-foreground font-medium transition-all  ${
+                    currentPath === l.href
+                      ? " dark:text-secondary-foreground "
+                      : " dark:hover:text-secondary-foreground/80"
                   } `}
                 >
                   {l.label}
@@ -50,7 +48,7 @@ const NavBar = () => {
             ))}
           </ul>
         </div>
-        <div className="flex items-center gap-10">
+        <div className="flex items-center gap-8">
           <ModeToggle />
           {status === "loading" && (
             <Skeleton
