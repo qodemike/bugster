@@ -38,10 +38,26 @@ const IssueChart = ({ open, inProgress, closed }: Props) => {
         className="relative right-4"
       >
         <BarChart data={data}>
-          <XAxis dataKey="label"  tickLine={false} />
+          <XAxis
+            dataKey="label"
+            tickLine={{ stroke: "none" }}
+            axisLine={{ stroke: "none" }}
+          />
           <YAxis />
-          <Tooltip />
-          <Bar dataKey="issues" barSize={60} className="fill-primary" />
+          <Tooltip
+            contentStyle={{
+              backgroundColor: "hsl(var(--card))",
+              border: 0,
+              color: "hsl(var(--foreground))",
+              borderRadius: "5px",
+            }}
+            cursor={{ fill: "hsl(var(--secondary))" }}
+          />
+          <Bar
+            dataKey="issues"
+            radius={[10, 10, 10, 10]}
+            className="fill-primary"
+          />
         </BarChart>
       </ResponsiveContainer>
     </Card>
