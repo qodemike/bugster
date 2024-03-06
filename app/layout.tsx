@@ -7,6 +7,7 @@ import AuthProvider from "./context/authProvider";
 import QueryClientProvider from "./context/QueryClientProvider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "Bugster",
@@ -18,7 +19,6 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-
       <body className={GeistSans.className}>
         <ThemeProvider
         attribute="class"
