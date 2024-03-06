@@ -23,16 +23,18 @@ const IssueSummary = ({ open, inProgress, closed, total }: Props) => {
   ];
 
   return (
-    <div className="flex gap-3">
+    <div className="flex flex-col md:flex-row gap-3">
       {containers.map((container) => (
         <Link
           key={container.title}
           href={`/issues/list?status=${container.status}`}
-          className="flex-1 flex-grow"
+          className="   flex-1 "
         >
-          <Card className="p-6 flex-grow  flex flex-col gap-2">
+          <Card className="p-4 md:p-5 ">
+            <div className={"flex justify-between items-center  md:flex-col  md:items-start gap-1"}>
               <CardTitle className="text-sm font-medium">{container.title}</CardTitle>
               <CardContent className="p-0 font-bold text-2xl">+{container.value}</CardContent>
+            </div>
           </Card>
         </Link>
       ))}

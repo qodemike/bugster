@@ -19,7 +19,7 @@ const LatestIssues = async () => {
   return (
     <Card className="p-6">
       <div className="mb-2 ml-3">
-        <h2 className="text-base font-bold">Recent Issues</h2>
+        <h2 className="text-base font-bold">Most Recent Issues</h2>
         <span className="text-sm text-muted-foreground">
           A Quick view of most recently updated issues
         </span>
