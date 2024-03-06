@@ -17,8 +17,8 @@ const LatestIssues = async () => {
   });
 
   return (
-    <Card className="p-6">
-      <div className="mb-2 ml-3">
+    <Card className="py-6 px-3  md:p-6 overflow-x-scroll md:overflow-x-auto">
+      <div className="mb-3 ml-3">
         <h2 className="text-base font-bold">Most Recent Issues</h2>
         <span className="text-sm text-muted-foreground">
           A Quick view of most recently updated issues
@@ -28,7 +28,7 @@ const LatestIssues = async () => {
         <TableBody>
           {issues.map((issue) => (
             <TableRow key={issue.id} className="">
-              <TableCell className="flex justify-between items-center ">
+              <TableCell className="flex justify-between items-center gap-6 md:gap-0">
                 <div className=" flex flex-col items-start gap-2 ">
                   <Link href={`/issues/${issue.id}`}>
                     <Button variant="link" className={"h-2 p-0 transition"}>
