@@ -35,9 +35,9 @@ const IssuesTable = ({ issues, searchParams }: Props) => {
   const router = useRouter();
 
   return (
-    <div className="bg-card rounded-lg border">
+    <div className="border-t">
     <Table >
-      <TableHeader>
+      <TableHeader >
         <TableRow>
           {columnHeaderData.map((column) => (
             <TableHead key={column.value} className={column.className || ''}>

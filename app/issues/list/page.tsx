@@ -5,6 +5,8 @@ import IssueActions from "../_components/IssueActions";
 import { Status } from "@prisma/client";
 import Pagination from "@/app/components/Pagination";
 import { Metadata } from "next";
+import { Card } from "@/components/ui/card";
+import delay from 'delay';
 
 interface Props {
   searchParams: IssueQuery;
@@ -12,6 +14,8 @@ interface Props {
 const sortOptions = ["title", "status", "createdAt"];
 
 const IssuesPage = async ({ searchParams }: Props) => {
+  await delay(5000);
+
   // Make sure the status is valid before search
   const statuses = Object.values(Status);
   const status = statuses.includes(searchParams.status)
@@ -35,13 +39,12 @@ const IssuesPage = async ({ searchParams }: Props) => {
   });
 
   const issueCount = await prisma.issue.count({ where: { status } });
-
   return (
-    <div>
-      <h1 className="mb-3 text-2xl font-bold">Issues List</h1>
-      <div className=" flex flex-col gap-5 ">
+    <div className="pt-12 flex flex-col gap-5">
+      <Card >
         <IssueActions />
         <IssuesTable searchParams={searchParams} issues={issues}></IssuesTable>
+      </Card>
         <div className=" self-end">
           <Pagination
             itemsCount={issueCount}
@@ -50,7 +53,6 @@ const IssuesPage = async ({ searchParams }: Props) => {
           />
         </div>
       </div>
-    </div>
   );
 };
 

@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { BellIcon } from "@radix-ui/react-icons";
 import {  User2Icon } from "lucide-react";
+import { FcGoogle } from "react-icons/fc";
 
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -47,9 +48,9 @@ const MiniNavBar = () => {
           )}
           <DropdownMenuItem>
             {status === "authenticated" ? (
-              <Link href="/api/auth/signout">Log out </Link>
+              <Link href="/api/auth/signout" className="w-full">Log out </Link>
             ) : (
-              <Link href="/api/auth/signin"> Log In</Link>
+              <Link href="/api/auth/signin" className="w-full flex items-center gap-3"><FcGoogle size={30}/> Sign In with Google</Link>
             )}
           </DropdownMenuItem>
         </DropdownMenuContent>

@@ -8,17 +8,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Card } from "@/components/ui/card";
 
 const IssuesPageSkeleton = async () => {
   const issues = Array(10).fill(0);
 
   return (
-    <>
-      <div className="mb-5">
+    <div className="pt-12">
+    <Card>
         <IssueActions />
-      </div>
-      <div className="rounded-lg border">
-        <Table>
+        <Table className="border-t">
           <TableHeader>
             <TableRow>
               <TableCell>Issue</TableCell>
@@ -45,8 +44,8 @@ const IssuesPageSkeleton = async () => {
             ))}
           </TableBody>
         </Table>
-      </div>
-    </>
+    </Card>
+    </div>
   );
 };
 

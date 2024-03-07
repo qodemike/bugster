@@ -60,7 +60,7 @@ const IssueForm = ({ issue }: Props) => {
         <Input
           defaultValue={issue?.title}
           {...register("title")}
-          placeholder="Title"
+          placeholder="Issue Title"
         />
         <div
           className={`${
@@ -75,7 +75,7 @@ const IssueForm = ({ issue }: Props) => {
             name="description"
             control={control}
             render={({ field }) => (
-              <SimpleMDE placeholder="Description" {...field} />
+              <SimpleMDE placeholder="Write a detailed description of the issue" {...field} />
             )}
           />
           <div
