@@ -26,7 +26,7 @@ const IssueDetailsActions = ({ issueId }: Props) => {
         </>
       ) : (
         <Link href={"/api/auth/signin"}>
-          <Button variant={"outline"} className="px-10">
+          <Button className="bg-foreground text-background  px-10">
             Sign in to Edit Issue
           </Button>
         </Link>

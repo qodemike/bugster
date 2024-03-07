@@ -88,7 +88,7 @@ const SelectAssignee = ({ issue }: Props) => {
         </div>
       ) : (
         <Link href={"/api/auth/signin"}>
-          <Button variant={"outline"} className="px-8 text-sm ">
+          <Button variant={"outline"} className=" bg-foreground text-background px-8 text-sm ">
             Sign in to Assign Issue
           </Button>
         </Link>

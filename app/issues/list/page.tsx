@@ -38,8 +38,8 @@ const IssuesPage = async ({ searchParams }: Props) => {
 
   return (
     <div>
-      <h1 className="mb-5 text-3xl font-bold">Issues List</h1>
-      <div className="  flex flex-col gap-5 ">
+      <h1 className="mb-3 text-2xl font-bold">Issues List</h1>
+      <div className=" flex flex-col gap-5 ">
         <IssueActions />
         <IssuesTable searchParams={searchParams} issues={issues}></IssuesTable>
         <div className=" self-end">
