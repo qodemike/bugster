@@ -22,7 +22,7 @@ const MiniNavBar = () => {
   const { status, data: session } = useSession();
 
   return (
-    <nav className="z-20 fixed right-0 pr-7 flex items-center gap-3">
+    <nav className="z-20 fixed top-3 right-0 pr-7 flex items-center gap-3">
       <ModeToggle />
       <Button variant="ghost" className="px-2">
         <BellIcon width={20} height={20} />

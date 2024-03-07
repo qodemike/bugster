@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 const LatestIssues = async () => {
   const issues = await prisma.issue.findMany({
     orderBy: { createdAt: "desc" },
-    take: 5,
+    take: 4,
     include: {
       assignedToUser: true,
     },
@@ -21,7 +21,7 @@ const LatestIssues = async () => {
       <div className="mb-3 ml-3">
         <h2 className="text-base font-bold">Most Recent Issues</h2>
         <span className="text-sm text-muted-foreground">
-          A Quick view of most recently updated issues
+          A Quick view of recently updated issues
         </span>
       </div>
       <Table className=" ">

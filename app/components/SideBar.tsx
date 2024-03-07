@@ -6,8 +6,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import {
-  TableIcon,
-  PersonIcon,
   GearIcon,
   DashboardIcon,
   EnterIcon,
@@ -43,13 +41,13 @@ const SideBar = () => {
         </div>
         <ul className=" mt-5 pl-6  flex flex-col gap-7">
           {links.map((link) => (
-            <li>
+            <li key={link.label}>
               <Link
                 href={link.href}
                 className={` text-sm flex items-center gap-4 transition-all  ${
                   currentPath === link.href
-                    ? " dark:text-secondary-foreground "
-                    : " dark:hover:text-secondary-foreground/80"
+                    ? " text-secondary-foreground "
+                    : " hover:text-secondary-foreground/90"
                 }`}
               >
                 {link.icon}
@@ -57,7 +55,7 @@ const SideBar = () => {
               </Link>
             </li>
           ))}
-          <li className=" text-sm hover:dark:text-secondary-foreground/80  flex items-center gap-4 transition-all cursor-pointer">
+          <li className=" text-sm hover:text-secondary-foreground/90  flex items-center gap-4 transition-all cursor-pointer">
             <GearIcon width={20} height={20} /> <span>Settings</span>
           </li>
         </ul>

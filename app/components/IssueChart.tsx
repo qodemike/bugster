@@ -55,7 +55,7 @@ const IssueChart = ({ open, inProgress, closed }: Props) => {
           />
           <Bar
             dataKey="issues"
-            radius={[10, 10, 10, 10]}
+            radius={[4, 4, 0, 0]}
             className="fill-primary"
           />
         </BarChart>

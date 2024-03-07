@@ -16,7 +16,7 @@ export default async function Home() {
   return (
     <div>
       <h1 className="mb-3 text-2xl font-bold">Dashboard</h1>
-      <div className="grid grid-cols-[2fr_1fr] gap-5 ">
+      <div className="grid grid-cols-[2fr_1.1fr] gap-5 ">
         <div className="flex flex-col gap-5">
           <IssueSummary
             open={open}
@@ -24,10 +24,9 @@ export default async function Home() {
             closed={closed}
             total={total}
           />
-          <IssueChart open={open} inProgress={inProgress} closed={closed} />
+          <LatestIssues/>
         </div>
-
-        <Card />
+          <IssueChart open={open} inProgress={inProgress} closed={closed} />
       </div>
     </div>
   );

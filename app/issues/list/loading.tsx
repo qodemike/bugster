@@ -14,8 +14,9 @@ const IssuesPageSkeleton = async () => {
   const issues = Array(8).fill(0);
 
   return (
-    <div className="pt-12">
-    <Card>
+    <div className="">
+      <h1 className="mb-3 text-2xl font-bold">Issues List</h1>
+      <Card>
         <IssueActions />
         <Table className="border-t">
           <TableHeader>
@@ -44,7 +45,7 @@ const IssuesPageSkeleton = async () => {
             ))}
           </TableBody>
         </Table>
-    </Card>
+      </Card>
     </div>
   );
 };

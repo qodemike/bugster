@@ -13,9 +13,9 @@ const NavLogo = () => {
   return (
     <Link href={"/"} className=" w-[133px] h-[30px]">
       {theme === "light" ? (
-        <Image src={logoBlack} alt="nav_logo_img" priority />
+        <Image src={logoBlack} alt="logo_img"  />
       ) : (
-        <Image src={logoWhite} alt="nav_logo_img" priority/>
+        <Image src={logoWhite} alt="logo_img" />
       )}
     </Link>
   );

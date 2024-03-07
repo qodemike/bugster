@@ -14,9 +14,10 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/components/ui/use-toast";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface Props {
   issue: Issue;
@@ -24,6 +25,8 @@ interface Props {
 
 const SelectAssignee = ({ issue }: Props) => {
   const { status } = useSession();
+  const path = usePathname()
+  console.log(path)
 
   const { toast } = useToast();
   const {
@@ -59,6 +62,10 @@ const SelectAssignee = ({ issue }: Props) => {
       });
   };
 
+  const handleSignIn = async () => {
+    await signIn('google',{callbackUrl: path})
+  }
+
   return (
     <>
       {status === "authenticated" ? (
@@ -88,7 +95,7 @@ const SelectAssignee = ({ issue }: Props) => {
         </div>
       ) : (
         <Link href={"/api/auth/signin"}>
-          <Button variant={"outline"} className=" bg-foreground text-background px-8 text-sm ">
+          <Button variant={"outline"} onClick={handleSignIn} className=" bg-foreground text-background px-8 text-sm ">
             Sign in to Assign Issue
           </Button>
         </Link>

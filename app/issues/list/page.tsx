@@ -29,7 +29,7 @@ const IssuesPage = async ({ searchParams }: Props) => {
 
   // Validating page number
   const page = parseInt(searchParams.page) || 1;
-  const pageSize = 7;
+  const pageSize = 8;
 
   const issues = await prisma.issue.findMany({
     where: { status },
@@ -40,12 +40,13 @@ const IssuesPage = async ({ searchParams }: Props) => {
 
   const issueCount = await prisma.issue.count({ where: { status } });
   return (
-    <div className="pt-12 ">
+    <div className="flex flex-col">
+      <h1 className="mb-3 text-2xl font-bold">Issues List</h1>
       <Card >
         <IssueActions />
         <IssuesTable searchParams={searchParams} issues={issues}></IssuesTable>
       </Card>
-        <div className="py-6">
+        <div className="self-end py-5">
           <Pagination
             itemsCount={issueCount}
             pageSize={pageSize}
