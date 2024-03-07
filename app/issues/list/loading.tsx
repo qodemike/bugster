@@ -11,7 +11,7 @@ import {
 import { Card } from "@/components/ui/card";
 
 const IssuesPageSkeleton = async () => {
-  const issues = Array(10).fill(0);
+  const issues = Array(8).fill(0);
 
   return (
     <div className="pt-12">
