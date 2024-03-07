@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import Head from "next/head";
 import SideBar from "./components/SideBar";
+import MiniNavBar from "./components/MiniNavBar";
 
 export const metadata: Metadata = {
   title: "Bugster",
@@ -29,7 +30,8 @@ export default function RootLayout({
                   <SideBar />
                 </aside>
                 <div>
-                  <main className={"px-5 pt-[20px] md:px-7 lg:px-9 "}>
+                  <main className={"px-5 pt-[20px] md:px-7  "}>
+                    <MiniNavBar/>
                     {children}
                   </main>
                 </div>
