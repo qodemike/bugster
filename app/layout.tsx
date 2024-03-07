@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import SideBar from "./components/SideBar";
 import NavBar from "./components/NavBar";
+import BottomBar from "./components/BottomBar";
 export const metadata: Metadata = {
   title: "Bugster",
   description: "A way to track issues and assign",
@@ -26,9 +27,12 @@ export default function RootLayout({
                 <aside className="hidden lg:block">
                   <SideBar />
                 </aside>
+                <aside className=" lg:hidden">
+                  <BottomBar/>
+                </aside>
                 <div className="">
                   <NavBar />
-                  <main className="  pt-[80px]  lg:pt-[20px] px-5 md:px-7 ">{children}</main>
+                  <main className="  py-[80px]  lg:py-[20px] px-5 md:px-7 ">{children}</main>
                 </div>
               </div>
               <Toaster />

@@ -30,22 +30,13 @@ const IssueSummary = ({ open, inProgress, closed, total }: Props) => {
           href={`/issues/list?status=${container.status}`}
           className="   flex-1 "
         >
-          <Card className="p-4 md:p-5 ">
-            <div
-              className={
-                "flex justify-between items-center  md:flex-col  md:items-start gap-1"
-              }
-            >
+          <Card className="p-4 md:p-5  flex justify-between items-center  md:flex-col  md:items-start md:gap-1" >
               <CardTitle className="text-sm font-medium">
                 {container.title}
               </CardTitle>
-              <div className="w-full flex justify-between items-center">
-                <CardContent className="p-0 font-bold text-2xl">
+                <CardContent className=" p-0 font-bold text-2xl">
                   +{container.value}
                 </CardContent>
-                <IssueStatusBadge status={container.status} />
-              </div>
-            </div>
           </Card>
         </Link>
       ))}

@@ -1,6 +1,6 @@
 import React from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import IssueActions from "../_components/IssueActions";
+import IssueTableActions from "../_components/IssueTableActions";
 import {
   Table,
   TableBody,
@@ -17,7 +17,7 @@ const IssuesPageSkeleton = async () => {
     <div className="">
       <h1 className="mb-3 text-2xl font-bold">Issues List</h1>
       <Card>
-        <IssueActions />
+        <IssueTableActions />
         <Table className="border-t">
           <TableHeader>
             <TableRow>

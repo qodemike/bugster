@@ -1,12 +1,13 @@
 import React from "react";
 import prisma from "@/prisma/client";
 import IssuesTable, { IssueQuery } from "../_components/IssuesTable";
-import IssueActions from "../_components/IssueActions";
+import IssueTableActions from "../_components/IssueTableActions";
 import { Status } from "@prisma/client";
 import Pagination from "@/app/components/Pagination";
 import { Metadata } from "next";
 import { Card } from "@/components/ui/card";
-import delay from 'delay';
+import delay from "delay";
+import CreateIssueButton from "./CreateIssueButton";
 
 interface Props {
   searchParams: IssueQuery;
@@ -41,19 +42,25 @@ const IssuesPage = async ({ searchParams }: Props) => {
   const issueCount = await prisma.issue.count({ where: { status } });
   return (
     <div className="flex flex-col">
-      <h1 className="mb-3 text-2xl font-bold">Issues List</h1>
-      <Card >
-        <IssueActions />
+      <div className="mb-3 flex flex-col">
+        <h1 className="mb-3 md:mb-0 text-2xl font-bold">Issues List</h1>
+        <div className="md:hidden">
+          <CreateIssueButton />
+        </div>
+        <div></div>
+      </div>
+      <Card>
+        <IssueTableActions />
         <IssuesTable searchParams={searchParams} issues={issues}></IssuesTable>
       </Card>
-        <div className="self-end py-5">
-          <Pagination
-            itemsCount={issueCount}
-            pageSize={pageSize}
-            currentPage={page}
-          />
-        </div>
+      <div className="self-end py-5">
+        <Pagination
+          itemsCount={issueCount}
+          pageSize={pageSize}
+          currentPage={page}
+        />
       </div>
+    </div>
   );
 };
 

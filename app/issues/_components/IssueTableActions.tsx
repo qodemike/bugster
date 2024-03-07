@@ -3,11 +3,11 @@
 import { Button } from "@/components/ui/button";
 import React from "react";
 import IssueStatusFilter from "../list/IssueStatusFilter";
-import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { IoFilterSharp } from "react-icons/io5";
+import CreateIssueButton from "../list/CreateIssueButton";
 
-const IssueActions = () => {
+const IssueTableActions = () => {
   const { status } = useSession();
   return (
     <div className=" p-4  w-full flex justify-between items-center">
@@ -15,17 +15,12 @@ const IssueActions = () => {
         <IssueStatusFilter />
         <IoFilterSharp size={20} />
       </div>
-      {status === "authenticated" ? (
-        <Link href={"/issues/new"}>
-          <Button>Create New Issue</Button>
-        </Link>
-      ) : (
-        <Button variant="outline" className="bg-foreground text-background">
-          Sign in to Create Issue
-        </Button>
-      )}
+      <div className="hidden md:block">
+      <CreateIssueButton/>
+
+      </div>
     </div>
   );
 };
 
-export default IssueActions;
+export default IssueTableActions;
