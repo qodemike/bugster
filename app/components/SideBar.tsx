@@ -46,7 +46,7 @@ const SideBar = () => {
             <li>
               <Link
                 href={link.href}
-                className={` text-sm flex items-center gap-3  transition-all  ${
+                className={` text-sm flex items-center gap-4 transition-all  ${
                   currentPath === link.href
                     ? " dark:text-secondary-foreground "
                     : " dark:hover:text-secondary-foreground/80"
@@ -57,20 +57,20 @@ const SideBar = () => {
               </Link>
             </li>
           ))}
-          <li className=" text-sm hover:dark:text-secondary-foreground/80  flex items-center gap-3 transition-all cursor-pointer">
+          <li className=" text-sm hover:dark:text-secondary-foreground/80  flex items-center gap-4 transition-all cursor-pointer">
             <GearIcon width={20} height={20} /> <span>Settings</span>
           </li>
         </ul>
       </div>
       <div className="pl-6 pt-7 text-sm border-t flex flex-col gap-5 ">
         {status === "authenticated" ? (
-          <Link href={"/api/auth/signout"} className="flex gap-3">
+          <Link href={"/api/auth/signout"} className="flex gap-4">
             <ExitIcon width={20} height={20}/>
             Log out</Link>
         ) : (
           <Link
             href={"/api/auth/signin"}
-            className=" w-fit dark:hover:text-white flex items-center gap-3 transition-all"
+            className=" w-fit dark:hover:text-white flex items-center gap-4 transition-all"
           >
             <EnterIcon width={20} height={20} className="" />
             <span>Log in </span>
