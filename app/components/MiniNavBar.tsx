@@ -11,8 +11,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { BellIcon } from "@radix-ui/react-icons";
-import { Link, User2Icon } from "lucide-react";
+import {  User2Icon } from "lucide-react";
+
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 import React from "react";
 
 const MiniNavBar = () => {
