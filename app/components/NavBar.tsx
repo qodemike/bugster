@@ -1,11 +1,8 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import React from "react";
-import { useSession } from "next-auth/react";
-import Link from "next/link";
-import Skeleton from "react-loading-skeleton";
 import { ModeToggle } from "@/components/theme-mode-switch";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,59 +10,61 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Menu } from "lucide-react";
+import { BellIcon } from "@radix-ui/react-icons";
+import { User2Icon } from "lucide-react";
+import { FcGoogle } from "react-icons/fc";
+
+import { useSession } from "next-auth/react";
+import Link from "next/link";
+import React from "react";
 import NavLogo from "./NavLogo";
-import { BellIcon} from '@radix-ui/react-icons'
 
 const NavBar = () => {
-  const currentPath = usePathname();
   const { status, data: session } = useSession();
 
-  const links = [
-    { label: "Dashboard", href: "/" },
-    { label: "Issues", href: "/issues/list" },
-  ];
-
   return (
-    <nav className="fixed z-20 w-screen h-16  px-5 md:px-7  bg-background border-b flex  items-center">
-      <div className=" w-full flex justify-between items-center ">
-        <div className="flex items-end gap-10 ">
-          <NavLogo />
-        </div>
-        <div className="flex items-center gap-8">
-          <ModeToggle />
-          {status === "loading" && (
-            <Skeleton
-              width={"2.5rem"}
-              height={"2.5rem"}
-              borderRadius={"100%"}
-            />
-          )}
-          {status === "unauthenticated" && (
-            <Link className="nav-link" href={"/api/auth/signin"}>
-              Log in
-            </Link>
-          )}
-          {status === "authenticated" && (
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Avatar>
-                  <AvatarImage src={session.user!.image!} />
-                  <AvatarFallback>?</AvatarFallback>
-                </Avatar>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuLabel>
-                  <span>{session.user!.email}</span>
-                </DropdownMenuLabel>
-                <DropdownMenuItem>
-                  <Link href={"/api/auth/signout"}>Log out</Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          )}
-        </div>
+    <nav className="z-20  fixed  lg:top-3 lg:right-0  w-full h-16 lg:h-fit  px-5  md:px-7 lg:pr-7 bg-background lg:bg-transparent border-b lg:border-none flex justify-between lg:justify-end items-center gap-3">
+      <div className="block lg:hidden">
+        <NavLogo />
+      </div>
+      <div>
+        <ModeToggle />
+        <Button variant="ghost" className="px-2">
+          <BellIcon width={20} height={20} />
+        </Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            {status === "authenticated" ? (
+              <Avatar>
+                <AvatarImage src={session.user!.image!} />
+                <AvatarFallback>?</AvatarFallback>
+              </Avatar>
+            ) : (
+              <Button variant="ghost" className="px-2">
+                <User2Icon />
+              </Button>
+            )}
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            {status === "authenticated" && (
+              <DropdownMenuLabel>{session.user?.email}</DropdownMenuLabel>
+            )}
+            <DropdownMenuItem>
+              {status === "authenticated" ? (
+                <Link href="/api/auth/signout" className="w-full">
+                  Log out{" "}
+                </Link>
+              ) : (
+                <Link
+                  href="/api/auth/signin"
+                  className="w-full flex items-center gap-3"
+                >
+                  <FcGoogle size={30} /> Sign In with Google
+                </Link>
+              )}
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </nav>
   );

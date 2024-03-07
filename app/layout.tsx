@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import NavBar from "./components/NavBar";
 import { GeistSans } from "geist/font/sans";
 import "@radix-ui/themes/styles.css";
 import "./globals.css";
@@ -7,10 +6,8 @@ import AuthProvider from "./context/authProvider";
 import QueryClientProvider from "./context/QueryClientProvider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
-import Head from "next/head";
 import SideBar from "./components/SideBar";
-import MiniNavBar from "./components/MiniNavBar";
-
+import NavBar from "./components/NavBar";
 export const metadata: Metadata = {
   title: "Bugster",
   description: "A way to track issues and assign",
@@ -25,15 +22,13 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system">
           <QueryClientProvider>
             <AuthProvider>
-              <div className="grid grid-cols-[230px_1fr]">
-                <aside>
+              <div className=" grid grid-cols-1 lg:grid-cols-[230px_1fr]">
+                <aside className="hidden lg:block">
                   <SideBar />
                 </aside>
-                <div>
-                  <main className={"px-5 pt-[20px] md:px-7  "}>
-                    <MiniNavBar/>
-                    {children}
-                  </main>
+                <div className="">
+                  <NavBar />
+                  <main className="  pt-[80px]  lg:pt-[20px] px-5 md:px-7 ">{children}</main>
                 </div>
               </div>
               <Toaster />
