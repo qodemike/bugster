@@ -5,19 +5,34 @@ import NavLogo from "./NavLogo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { BellIcon } from "@radix-ui/react-icons";
-import { PersonIcon, GearIcon } from "@radix-ui/react-icons";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ModeToggle } from "@/components/theme-mode-switch";
+import {
+  TableIcon,
+  PersonIcon,
+  GearIcon,
+  DashboardIcon,
+  EnterIcon,
+  ExitIcon,
+} from "@radix-ui/react-icons";
+import { BsGraphUp } from "react-icons/bs";
+import { FaList } from "react-icons/fa";
+
 
 const SideBar = () => {
   const currentPath = usePathname();
   const { status, data: session } = useSession();
 
   const links = [
-    { label: "Dashboard", href: "/" },
-    { label: "Issues", href: "/issues/list", Icon: <BellIcon /> },
-    { label: "Analytics", href: "/analytics" },
+    {
+      label: "Dashboard",
+      href: "/",
+      icon: <DashboardIcon width={20} height={20} />,
+    },
+    {
+      label: "Issues",
+      href: "/issues/list",
+      icon: <FaList size={20} />,
+    },
+    { label: "Analytics", href: "/analytics", icon: <BsGraphUp size={20} /> },
   ];
 
   return (
@@ -26,37 +41,40 @@ const SideBar = () => {
         <div className="h-16 pl-6 border-b flex items-center ">
           <NavLogo />
         </div>
-        <ul className=" mt-5 pl-6  flex flex-col gap-5">
+        <ul className=" mt-5 pl-6  flex flex-col gap-7">
           {links.map((link) => (
             <li>
               <Link
                 href={link.href}
-                className={`  transition-all  ${
+                className={` text-sm flex items-center gap-3  transition-all  ${
                   currentPath === link.href
                     ? " dark:text-secondary-foreground "
                     : " dark:hover:text-secondary-foreground/80"
-                } `}
+                }`}
               >
-                {link.label}
+                {link.icon}
+                <span>{link.label}</span>
               </Link>
             </li>
           ))}
-          <li className="hover:dark:text-secondary-foreground/80  flex items-center gap-3 transition-all cursor-pointer">
+          <li className=" text-sm hover:dark:text-secondary-foreground/80  flex items-center gap-3 transition-all cursor-pointer">
             <GearIcon width={20} height={20} /> <span>Settings</span>
-        </li>
+          </li>
         </ul>
       </div>
       <div className="pl-6 pt-7 text-sm border-t flex flex-col gap-5 ">
         {status === "authenticated" ? (
-            <Link href={"/api/auth/signout"}>Log out</Link>
+          <Link href={"/api/auth/signout"} className="flex gap-3">
+            <ExitIcon width={20} height={20}/>
+            Log out</Link>
         ) : (
-            <Link
-              href={"/api/auth/signin"}
-              className=" w-fit dark:hover:text-white flex items-center gap-3 transition-all"
-            >
-              <PersonIcon width={20} height={20} className="" />{" "}
-              <span>Log in </span>
-            </Link>
+          <Link
+            href={"/api/auth/signin"}
+            className=" w-fit dark:hover:text-white flex items-center gap-3 transition-all"
+          >
+            <EnterIcon width={20} height={20} className="" />
+            <span>Log in </span>
+          </Link>
         )}
       </div>
     </div>
