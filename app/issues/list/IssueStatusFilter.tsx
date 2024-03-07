@@ -31,7 +31,7 @@ const IssueStatusFilter = () => {
   return (
     <div>
     <Select onValueChange={handleOnChange}>
-      <SelectTrigger>
+      <SelectTrigger className="flex gap-5">
         <SelectValue placeholder="Filter by status... " />
       </SelectTrigger>
       <SelectContent>

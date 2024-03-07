@@ -34,7 +34,7 @@ const IssueChart = ({ open, inProgress, closed }: Props) => {
       </div>
       <ResponsiveContainer
         width="100%"
-        height={400}
+        height={300}
         className="relative right-4"
       >
         <BarChart data={data}>

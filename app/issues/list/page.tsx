@@ -37,24 +37,28 @@ const IssuesPage = async ({ searchParams }: Props) => {
   const issueCount = await prisma.issue.count({ where: { status } });
 
   return (
-    <div className="flex flex-col gap-5 ">
-      <IssueActions />
-      <IssuesTable searchParams={searchParams} issues={issues}></IssuesTable>
-      <div className=" self-end">
-        <Pagination
-          itemsCount={issueCount}
-          pageSize={pageSize}
-          currentPage={page}
-        />
+    <div>
+      <h1 className="mb-5 text-3xl font-bold">Issues List</h1>
+      <div className="  flex flex-col gap-5 ">
+        <IssueActions />
+        <IssuesTable searchParams={searchParams} issues={issues}></IssuesTable>
+        <div className=" self-end">
+          <Pagination
+            itemsCount={issueCount}
+            pageSize={pageSize}
+            currentPage={page}
+          />
         </div>
+      </div>
     </div>
   );
 };
 
 export const metadata: Metadata = {
-  title: 'Bugster - Issue List',
-  description: "See full list of project issues, their status and date posted. "
-}
+  title: "Bugster - Issue List",
+  description:
+    "See full list of project issues, their status and date posted. ",
+};
 
 // To force dynamic rendering of this page.
 export const dynamic = "force-dynamic";

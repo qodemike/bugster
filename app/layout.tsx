@@ -8,6 +8,7 @@ import QueryClientProvider from "./context/QueryClientProvider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import Head from "next/head";
+import SideBar from "./components/SideBar";
 
 export const metadata: Metadata = {
   title: "Bugster",
@@ -20,19 +21,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={GeistSans.className}>
-        <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        >
+        <ThemeProvider attribute="class" defaultTheme="system">
           <QueryClientProvider>
             <AuthProvider>
-              <NavBar />
-              <aside></aside>
-              <main className={"px-5 pt-24 md:px-7 lg:px-9 "}>{children}</main>
-              <Toaster/>
+              <div className="grid grid-cols-[230px_1fr]">
+                <aside>
+                  <SideBar />
+                </aside>
+                <div>
+                  <main className={"px-5 pt-[20px] md:px-7 lg:px-9 "}>
+                    {children}
+                  </main>
+                </div>
+              </div>
+              <Toaster />
             </AuthProvider>
           </QueryClientProvider>
-          </ThemeProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

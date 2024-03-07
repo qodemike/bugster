@@ -15,8 +15,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Menu } from "lucide-react";
-
 import NavLogo from "./NavLogo";
+import { BellIcon} from '@radix-ui/react-icons'
 
 const NavBar = () => {
   const currentPath = usePathname();
@@ -28,26 +28,10 @@ const NavBar = () => {
   ];
 
   return (
-    <nav className=" fixed z-20 w-screen h-16  px-5 md:px-7 lg:px-9 bg-background border-b flex  items-center">
+    <nav className="fixed z-20 w-screen h-16  px-5 md:px-7  bg-background border-b flex  items-center">
       <div className=" w-full flex justify-between items-center ">
         <div className="flex items-end gap-10 ">
           <NavLogo />
-          <ul className="flex items-end gap-7">
-            {links.map((l) => (
-              <li key={l.href}>
-                <Link
-                  href={l.href}
-                  className={`text-sm text-muted-foreground font-medium transition-all  ${
-                    currentPath === l.href
-                      ? " dark:text-secondary-foreground "
-                      : " dark:hover:text-secondary-foreground/80"
-                  } `}
-                >
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
         </div>
         <div className="flex items-center gap-8">
           <ModeToggle />

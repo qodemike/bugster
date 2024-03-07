@@ -3,6 +3,7 @@ import IssueChart from "./components/IssueChart";
 import IssueSummary from "./components/IssueSummary";
 import LatestIssues from "./components/LatestIssues";
 import prisma from "@/prisma/client";
+import { Card } from "@/components/ui/card";
 
 export default async function Home() {
   const open = await prisma.issue.count({ where: { status: "OPEN" } });
@@ -14,18 +15,19 @@ export default async function Home() {
 
   return (
     <div>
-      <h1 className="mb-5 text-3xl font-bold">Dashboard</h1>
-      <div className="flex flex-col gap-5">
-        <IssueSummary
-          open={open}
-          inProgress={inProgress}
-          closed={closed}
-          total={total}
-        />
-        <div className=" grid  lg:grid-cols-2 gap-5">
+      <h1 className="mb-3 text-2xl font-bold">Dashboard</h1>
+      <div className="grid grid-cols-[2fr_1fr] gap-5">
+        <div className="flex flex-col gap-3">
+          <IssueSummary
+            open={open}
+            inProgress={inProgress}
+            closed={closed}
+            total={total}
+          />
           <IssueChart open={open} inProgress={inProgress} closed={closed} />
-          <LatestIssues />
         </div>
+
+        <Card />
       </div>
     </div>
   );
