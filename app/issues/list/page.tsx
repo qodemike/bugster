@@ -6,7 +6,6 @@ import { Status } from "@prisma/client";
 import Pagination from "@/app/components/Pagination";
 import { Metadata } from "next";
 import { Card } from "@/components/ui/card";
-import delay from "delay";
 import CreateIssueButton from "./CreateIssueButton";
 
 interface Props {
@@ -15,7 +14,6 @@ interface Props {
 const sortOptions = ["title", "status", "createdAt"];
 
 const IssuesPage = async ({ searchParams }: Props) => {
-  await delay(5000);
 
   // Make sure the status is valid before search
   const statuses = Object.values(Status);
@@ -42,9 +40,10 @@ const IssuesPage = async ({ searchParams }: Props) => {
   const issueCount = await prisma.issue.count({ where: { status } });
   return (
     <div className="flex flex-col">
-      <div className="mb-3 flex flex-col">
-        <h1 className="mb-3 md:mb-0 text-2xl font-bold">Issues List</h1>
-        <div className="md:hidden">
+      <div className=" flex flex-col">
+        <h1 className="mb-3  text-2xl font-bold">Issues List</h1>
+        <div className="hidden lg:block mb-5 border-t"/>
+        <div className="mb-5 md:hidden">
           <CreateIssueButton />
         </div>
         <div></div>

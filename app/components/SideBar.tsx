@@ -59,7 +59,7 @@ const SideBar = () => {
           </li>
         </ul>
       </div>
-      <div className="pl-6 pt-7 text-sm border-t flex flex-col gap-5 ">
+      <div className="pl-6 pt-6 text-sm border-t flex flex-col gap-5 ">
         {status === "authenticated" ? (
           <Link
             href={"/api/auth/signout"}

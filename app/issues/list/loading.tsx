@@ -16,6 +16,7 @@ const IssuesPageSkeleton = async () => {
   return (
     <div className="">
       <h1 className="mb-3 text-2xl font-bold">Issues List</h1>
+      <div className="hidden lg:block mb-5 border-t"/>
       <Card>
         <IssueTableActions />
         <Table className="border-t">

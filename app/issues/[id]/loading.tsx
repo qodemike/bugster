@@ -5,7 +5,7 @@ const IssueDetailSkelton = () => {
   const skeletons = Array(4).fill(0);
 
   return (
-    <div className="pt-16 grid grid-cols-1 lg:grid-cols-5 gap-y-8 lg:gap-5">
+    <div className="pt-10 md:pt-16 grid grid-cols-1 lg:grid-cols-5 gap-y-8 lg:gap-5">
       <div className=" lg:col-span-3 ">
         <Skeleton className="h-8" />
         <div className="mt-4 flex items-center gap-5">

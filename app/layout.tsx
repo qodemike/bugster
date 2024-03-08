@@ -32,7 +32,7 @@ export default function RootLayout({
                 </aside>
                 <div className="">
                   <NavBar />
-                  <main className="  py-[80px]  lg:py-[20px] px-5 md:px-7 ">{children}</main>
+                  <main className=" py-[80px] lg:py-[20px] px-5 md:px-7 ">{children}</main>
                 </div>
               </div>
               <Toaster />

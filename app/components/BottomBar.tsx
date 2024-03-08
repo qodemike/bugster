@@ -25,10 +25,10 @@ const links = [
 const BottomBar = () => {
     const path = usePathname()
   return (
-    <Card className="z-20 w-full  rounded-none  fixed bottom-0">
-      <ul className="w-full text-muted-foreground flex justify-between  ">
+    <Card className="z-20 w-full  rounded-none  fixed bottom-0 flex justify-center">
+      <ul className=" w-full max-w-sm text-muted-foreground flex justify-between  ">
         {links.map((link) => (
-          <li className={`p-5  ${path === link.href ? "text-foreground bg-secondary " : '' } transition-all `}>
+          <li key={link.label} className={`p-5 transition-all ${path === link.href ? "text-foreground bg-secondary " : '' } `}>
             <Link href={link.href}>{link.icon}</Link>
           </li>
         ))}

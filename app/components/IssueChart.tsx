@@ -25,16 +25,17 @@ const IssueChart = ({ open, inProgress, closed }: Props) => {
   ];
 
   return (
-    <Card className="py-6 md:p-6 overflow-hidden flex flex-col justify-center items-center gap-5 ">
-      <div className="flex flex-col items-center">
-        <h2 className="font-bold">Total Issue Overview</h2>
+    <Card className="py-4 h-full   flex flex-col justify-center items-center gap-5 ">
+      <div className="flex flex-col items-center ">
+        <h2 className="font-bold">Quick Issues Overview</h2>
         <p className="text-sm dark:text-muted-foreground">
           +20.1% from last month
         </p>
       </div>
+
       <ResponsiveContainer
         width="100%"
-        height={300}
+        height={350}
         className="relative right-4"
       >
         <BarChart data={data}>
@@ -54,12 +55,14 @@ const IssueChart = ({ open, inProgress, closed }: Props) => {
             cursor={{ fill: "hsl(var(--secondary))" }}
           />
           <Bar
+            barSize={45}
             dataKey="issues"
-            radius={[4, 4, 0, 0]}
+            radius={[0, 0, 0, 0]}
             className="fill-primary"
           />
         </BarChart>
       </ResponsiveContainer>
+
     </Card>
   );
 };

@@ -17,7 +17,7 @@ const LatestIssues = async () => {
   });
 
   return (
-    <Card className="h-fit lg:h-[420px]  py-6 px-3  md:p-6 overflow-x-scroll md:overflow-x-auto">
+    <Card className="h-fit py-6 px-3 md:p-6 overflow-x-scroll md:overflow-x-auto">
       <div className="mb-3 ml-3">
         <h2 className="text-base font-bold">Most Recent Issues</h2>
         <span className="text-sm text-muted-foreground">

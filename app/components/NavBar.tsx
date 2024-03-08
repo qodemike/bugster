@@ -27,7 +27,7 @@ const NavBar = () => {
       <div className="block lg:hidden">
         <NavLogo />
       </div>
-      <div className="flex md:gap-3">
+      <div className="flex gap-2 md:gap-3">
         <ModeToggle />
         <Button variant="ghost" className="px-2">
           <BellIcon width={20} height={20} />
