@@ -2,7 +2,6 @@ import { Status } from "@prisma/client";
 import Link from "next/link";
 import React from "react";
 import { Card, CardTitle, CardHeader, CardContent } from "@/components/ui/card";
-import IssueStatusBadge from "./IssueStatusBadge";
 
 interface Props {
   open: number;
