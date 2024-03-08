@@ -17,7 +17,7 @@ interface Props {
   closed: number;
 }
 
-const IssueChart = ({ open, inProgress, closed }: Props) => {
+const IssueBarChart = ({ open, inProgress, closed }: Props) => {
   const data = [
     { label: "Open", issues: open },
     { label: "In Progress", issues: inProgress },
@@ -67,4 +67,4 @@ const IssueChart = ({ open, inProgress, closed }: Props) => {
   );
 };
 
-export default IssueChart;
+export default IssueBarChart;

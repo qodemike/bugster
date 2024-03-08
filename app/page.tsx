@@ -1,9 +1,10 @@
 import { Metadata } from "next";
-import IssueChart from "./components/IssueChart";
+import IssueBarChart from "./components/IssueBarChart";
 import IssueSummary from "./components/IssueSummary";
 import LatestIssues from "./components/LatestIssues";
 import prisma from "@/prisma/client";
 import { Card } from "@/components/ui/card";
+import IssuesBarGraph from "./components/IssuesBarGraph";
 
 export default async function Home() {
   const open = await prisma.issue.count({ where: { status: "OPEN" } });
@@ -13,9 +14,44 @@ export default async function Home() {
   const closed = await prisma.issue.count({ where: { status: "CLOSED" } });
   const total = open + inProgress + closed;
 
+  const startDate = new Date("2024-02-26");
+  const endDate = new Date("2024-03-01");
+
+  const weeksData = [];
+
+  for (
+    let date = new Date(startDate);
+    date <= endDate;
+    date.setDate(date.getDate() + 1)
+  ) {
+    const issues = await prisma.issue.findMany({
+      where: {
+        createdAt: {
+          gte: new Date(date),
+          lt: new Date(new Date(date).setDate(date.getDate() + 1)),
+        },
+      },
+    });
+
+    const openCount = issues.filter((issue) => issue.status === "OPEN").length;
+    const inProgressCount = issues.filter(
+      (issue) => issue.status === "IN_PROGRESS"
+    ).length;
+    const closedCount = issues.filter(
+      (issue) => issue.status === "CLOSED"
+    ).length;
+
+    weeksData.push({
+      day: date.toDateString().split(" ")[0],
+      Open: openCount,
+      "In progress": inProgressCount,
+      Closed: closedCount,
+    });
+  }
+
+
   return (
-    <div>
-      <div></div>
+    <>
       <h1 className="mb-3 text-2xl font-bold">Dashboard</h1>
       <div className="hidden lg:block mb-5 border-t"/>
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_1.1fr] gap-5 ">
@@ -30,10 +66,11 @@ export default async function Home() {
         </div>
         <div className="grid grid-rows- gap-5 ">
           <Card className="h-[270px]"/>
-          <IssueChart open={open} inProgress={inProgress} closed={closed} />
+          <IssueBarChart open={open} inProgress={inProgress} closed={closed} />
         </div>
       </div>
-    </div>
+      <IssuesBarGraph data={weeksData}/>
+    </>
   );
 }
 
