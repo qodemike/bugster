@@ -15,8 +15,9 @@ const IssueSummary = ({ open, inProgress, closed, total }: Props) => {
   const containers: {
     title: string;
     value: number;
-    status: Status;
+    status?: Status;
   }[] = [
+    { title: "Total Issues", value: total },
     { title: "Closed Issues", value: closed, status: "CLOSED" },
     { title: "Open Issues", value: open, status: "OPEN" },
     { title: "In-progress Issues", value: inProgress, status: "IN_PROGRESS" },
@@ -30,11 +31,11 @@ const IssueSummary = ({ open, inProgress, closed, total }: Props) => {
           href={`/issues/list?status=${container.status}`}
           className="   flex-1 "
         >
-          <Card className="p-4 md:p-5  flex justify-between items-center  md:flex-col  md:items-start md:gap-1" >
+          <Card className="p-4  flex justify-between items-center  md:flex-col  md:items-start md:gap-1" >
               <CardTitle className="text-sm font-medium">
                 {container.title}
               </CardTitle>
-                <CardContent className=" p-0 font-bold text-2xl">
+                <CardContent className=" p-0 text-2xl font-bold ">
                   +{container.value}
                 </CardContent>
           </Card>

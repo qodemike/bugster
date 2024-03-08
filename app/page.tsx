@@ -49,27 +49,23 @@ export default async function Home() {
     });
   }
 
-
   return (
     <>
-      <h1 className="mb-3 text-2xl font-bold">Dashboard</h1>
-      <div className="hidden lg:block mb-5 border-t"/>
-      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1.1fr] gap-5 ">
-        <div className="flex flex-col gap-5">
-          <IssueSummary
-            open={open}
-            inProgress={inProgress}
-            closed={closed}
-            total={total}
-          />
-          <LatestIssues/>
-        </div>
-        <div className="grid grid-rows- gap-5 ">
-          <Card className="h-[270px]"/>
-          <IssueBarChart open={open} inProgress={inProgress} closed={closed} />
-        </div>
+      <h1 className=" mb-3 text-2xl font-bold ">Dashboard</h1>
+      <div className=" hidden lg:block mb-5 border-t " />
+      <div className=" flex flex-col gap-5">
+        <IssueSummary
+          open={open}
+          inProgress={inProgress}
+          closed={closed}
+          total={total}
+        />
+      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-5 ">
+          <IssuesBarGraph data={weeksData} />
+          <Card/>
       </div>
-      <IssuesBarGraph data={weeksData}/>
+          <LatestIssues />
+      </div>
     </>
   );
 }

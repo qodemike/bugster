@@ -21,7 +21,7 @@ const LatestIssues = async () => {
       <div className="mb-3 ml-3">
         <h2 className="text-base font-bold">Most Recent Issues</h2>
         <span className="text-sm text-muted-foreground">
-          A Quick view of recently updated issues
+          Issues updates and assigned
         </span>
       </div>
       <Table className=" ">
