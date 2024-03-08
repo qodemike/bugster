@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={GeistSans.className}>
-        <ThemeProvider attribute="class" defaultTheme="system">
+        <ThemeProvider attribute="class" defaultTheme="light">
           <QueryClientProvider>
             <AuthProvider>
               <div className=" grid grid-cols-1 lg:grid-cols-[230px_1fr]">

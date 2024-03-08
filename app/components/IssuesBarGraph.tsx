@@ -20,15 +20,20 @@ interface Props {
 
 const IssuesBarGraph = ({ data }: Props) => {
   return (
-    <Card className="w-full p-5 flex flex-col justify-center ">
+    <Card className="w-full px-4 pt-4 flex flex-col justify-center ">
       <ResponsiveContainer
         width={"100%"}
         height={350}
         className="relative right-6"
       >
         <BarChart data={data}>
-          <Tooltip cursor={{ fill: "hsl(var(--secondary))" }} content={({active, payload, label}) => <CustomToolTip active={active} payload={payload} label={label} />}   />
-          <CartesianGrid strokeDasharray={"5, 5"} />
+          <Tooltip
+            cursor={{ fill: "hsl(var(--secondary))" }}
+            content={({ active, payload, label }) => (
+              <CustomToolTip active={active} payload={payload} label={label} />
+            )}
+          />
+          <CartesianGrid strokeDasharray={"5, 5"} className=" stroke-muted-foreground " />
           <XAxis dataKey={"day"} axisLine={{ stroke: "none" }} />
           <YAxis axisLine={{ stroke: "none" }} />
           <Bar
@@ -49,7 +54,6 @@ const IssuesBarGraph = ({ data }: Props) => {
             dataKey={"Closed"}
             className="fill-emerald-500 "
           />
-          <Legend />
         </BarChart>
       </ResponsiveContainer>
     </Card>
@@ -57,5 +61,4 @@ const IssuesBarGraph = ({ data }: Props) => {
 };
 
 export default IssuesBarGraph;
-
 

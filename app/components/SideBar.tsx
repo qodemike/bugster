@@ -38,7 +38,7 @@ const SideBar = () => {
         <div className="h-16 pl-6 border-b flex items-center ">
           <NavLogo />
         </div>
-        <ul className=" mt-5 pl-6  flex flex-col gap-7">
+        <ul className=" mt-6 pl-6  flex flex-col gap-7">
           {links.map((link) => (
             <li key={link.label}>
               <Link

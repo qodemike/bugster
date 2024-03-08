@@ -51,9 +51,9 @@ export default async function Home() {
 
   return (
     <>
-      <h1 className=" mb-3 text-2xl font-bold ">Dashboard</h1>
-      <div className=" hidden lg:block mb-5 border-t " />
-      <div className=" flex flex-col gap-5">
+      <h1 className=" lg:fixed lg:z-20 mb-3 text-2xl font-bold ">Dashboard</h1>
+      {/* <div className=" hidden lg:block mb-5 border-t " /> */}
+      <div className="lg:pt-16 flex flex-col gap-5">
         <IssueSummary
           open={open}
           inProgress={inProgress}

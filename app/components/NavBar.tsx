@@ -23,7 +23,7 @@ const NavBar = () => {
   const { status, data: session } = useSession();
 
   return (
-    <nav className="z-20  fixed  lg:top-3 lg:right-0  w-full h-16 lg:h-fit  px-5  md:px-7 lg:pr-7 bg-background lg:bg-transparent border-b lg:border-none flex justify-between lg:justify-end items-center gap-3">
+    <nav className="z-20 lg:z-10 fixed   lg:right-0  w-full h-16 lg:h-16  px-5  md:px-7 lg:pr-7 bg-background lg:bg-card border-b  flex justify-between lg:justify-end items-center gap-3">
       <div className="block lg:hidden">
         <NavLogo />
       </div>

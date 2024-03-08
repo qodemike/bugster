@@ -55,6 +55,15 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        open: {
+          DEFAULT: "hsl(var(--secondary-foreground))"
+        },
+        inProgress: {
+          DEFAULT: " #2563eb",
+        },
+        closed: {
+          DEFAULT: "#10b981"
+        }
       },
       borderRadius: {
         lg: "var(--radius)",

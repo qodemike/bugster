@@ -14,7 +14,6 @@ interface Props {
 const sortOptions = ["title", "status", "createdAt"];
 
 const IssuesPage = async ({ searchParams }: Props) => {
-
   // Make sure the status is valid before search
   const statuses = Object.values(Status);
   const status = statuses.includes(searchParams.status)
@@ -41,23 +40,29 @@ const IssuesPage = async ({ searchParams }: Props) => {
   return (
     <div className="flex flex-col">
       <div className=" flex flex-col">
-        <h1 className="mb-3  text-2xl font-bold">Issues List</h1>
-        <div className="hidden lg:block mb-5 border-t"/>
+        <h1 className=" lg:fixed lg:z-20  mb-3  text-2xl font-bold">
+          Issues List
+        </h1>
         <div className="mb-5 md:hidden">
           <CreateIssueButton />
         </div>
         <div></div>
       </div>
-      <Card>
-        <IssueTableActions />
-        <IssuesTable searchParams={searchParams} issues={issues}></IssuesTable>
-      </Card>
-      <div className="self-end py-5">
-        <Pagination
-          itemsCount={issueCount}
-          pageSize={pageSize}
-          currentPage={page}
-        />
+      <div className="lg:pt-16">
+        <Card>
+          <IssueTableActions />
+          <IssuesTable
+            searchParams={searchParams}
+            issues={issues}
+          ></IssuesTable>
+        </Card>
+        <div className=" py-5">
+          <Pagination
+            itemsCount={issueCount}
+            pageSize={pageSize}
+            currentPage={page}
+          />
+        </div>
       </div>
     </div>
   );

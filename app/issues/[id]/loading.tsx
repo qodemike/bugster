@@ -16,8 +16,8 @@ const IssueDetailSkelton = () => {
           <Skeleton className=" h-7 " />
           <div className="my-3 border-b"></div>
           <div className="flex flex-col gap-3">
-            {skeletons.map(() => (
-              <Skeleton className="h-4" />
+            {skeletons.map((skeleton) => (
+              <Skeleton key={skeleton} className="h-4" />
             ))}
           </div>
         </Card>
