@@ -5,7 +5,6 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
-  Legend,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -13,12 +12,13 @@ import {
 } from "recharts";
 import { Card } from "@/components/ui/card";
 import CustomToolTip from "./CustomToolTip";
+import useFetchGraphData from "../hooks/useFetchGraphData";
 
-interface Props {
-  data: { day: string; Open: number; "In progress": number; Closed: number }[];
-}
 
-const IssuesBarGraph = ({ data }: Props) => {
+const IssuesBarGraph = () => {
+
+const data = useFetchGraphData()
+
   return (
     <Card className="w-full px-4 pt-4 flex flex-col justify-center ">
       <ResponsiveContainer
@@ -46,13 +46,13 @@ const IssuesBarGraph = ({ data }: Props) => {
             barSize={20}
             radius={[10, 10, 10, 10]}
             dataKey={"In progress"}
-            className="fill-blue-600 "
+            className="fill-inProgress "
           />
           <Bar
             barSize={20}
             radius={[10, 10, 10, 10]}
             dataKey={"Closed"}
-            className="fill-emerald-500 "
+            className="fill-closed "
           />
         </BarChart>
       </ResponsiveContainer>

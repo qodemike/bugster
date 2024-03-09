@@ -2,6 +2,8 @@ import { Status } from "@prisma/client";
 import Link from "next/link";
 import React from "react";
 import { Card, CardTitle, CardHeader, CardContent } from "@/components/ui/card";
+import prisma from "@/prisma/client";
+
 
 interface Props {
   open: number;
@@ -10,7 +12,13 @@ interface Props {
   total: number;
 }
 
-const IssueSummary = ({ open, inProgress, closed, total }: Props) => {
+const IssueSummary = async () => {
+
+  const open = await prisma.issue.count({ where: { status: "OPEN" } });
+  const inProgress = await prisma.issue.count({ where: { status: "IN_PROGRESS" },});
+  const closed = await prisma.issue.count({ where: { status: "CLOSED" } });
+  const total = open + inProgress + closed;
+
   const containers: {
     title: string;
     value: number;

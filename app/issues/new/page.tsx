@@ -9,7 +9,7 @@ const  IssueForm = dynamic(
 
 const NewIssuePage = () => {
   return (
-    <div className="pt-10">
+    <div className="md:pt-16">
       <h1 className="mb-3 text-2xl font-bold">Fill the Form Below</h1>
       <IssueForm></IssueForm>
     </div>

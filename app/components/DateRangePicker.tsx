@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext} from "react";
 import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
 import {
@@ -9,14 +9,11 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
-import { DateRange } from "react-day-picker";
+import DateRangeContext from "../context/dateRange/DateContext";
 
 const DatePicker = () => {
-  useState();
-  const [dateRange, setDateRange] = useState<DateRange>({
-    from: new Date("2024-02-26"),
-    to: new Date("2024-03-01"),
-  });
+
+  const { dateRange, setDateRange} = useContext(DateRangeContext)
 
   const handleOnSelectDayFrom = (day: Date) => {
     setDateRange({ ...dateRange, from: day });
@@ -37,7 +34,7 @@ const DatePicker = () => {
             >
               {(
                 <span className=" text-sm lg:text-xs">
-                  {dateRange?.from?.toDateString()}
+                    {dateRange?.from?.toDateString()}
                 </span>
               ) || <span className=" text-sm lg:text-xs">Pick a date</span>}
               <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />

@@ -15,7 +15,10 @@ const EditIssuePage = async ({ params }: Props) => {
   if (!issue) notFound();
 
   return (
-    <IssueForm issue={issue}/>
+    <div className="md:pt-16">
+      <h1 className="mb-3 text-2xl font-bold">Fill the Form Below</h1>
+      <IssueForm issue={issue}/>
+    </div>
   )
 };
 

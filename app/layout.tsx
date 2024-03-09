@@ -9,6 +9,9 @@ import { Toaster } from "@/components/ui/toaster";
 import SideBar from "./components/SideBar";
 import NavBar from "./components/NavBar";
 import BottomBar from "./components/BottomBar";
+import DateRangeProvider from "./context/dateRange/DateProvider";
+
+
 export const metadata: Metadata = {
   title: "Bugster",
   description: "A way to track issues and assign",
@@ -23,6 +26,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light">
           <QueryClientProvider>
             <AuthProvider>
+              <DateRangeProvider>
               <div className=" grid grid-cols-1 lg:grid-cols-[230px_1fr]">
                 <aside className="hidden lg:block">
                   <SideBar />
@@ -36,6 +40,7 @@ export default function RootLayout({
                 </div>
               </div>
               <Toaster />
+              </DateRangeProvider>
             </AuthProvider>
           </QueryClientProvider>
         </ThemeProvider>

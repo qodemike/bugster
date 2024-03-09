@@ -5,15 +5,9 @@ import LatestIssues from "./components/LatestIssues";
 import prisma from "@/prisma/client";
 import { Card } from "@/components/ui/card";
 import IssuesBarGraph from "./components/IssuesBarGraph";
-import { CalendarForm } from "./issues/_components/playground";
 import DatePicker from "./components/DateRangePicker";
 
 export default async function Home() {
-
-  const open = await prisma.issue.count({ where: { status: "OPEN" } });
-  const inProgress = await prisma.issue.count({ where: { status: "IN_PROGRESS" },});
-  const closed = await prisma.issue.count({ where: { status: "CLOSED" } });
-  const total = open + inProgress + closed;
 
   const startDate = new Date("2024-02-26");
   const endDate = new Date("2024-03-01");
@@ -35,12 +29,8 @@ export default async function Home() {
     });
 
     const openCount = issues.filter((issue) => issue.status === "OPEN").length;
-    const inProgressCount = issues.filter(
-      (issue) => issue.status === "IN_PROGRESS"
-    ).length;
-    const closedCount = issues.filter(
-      (issue) => issue.status === "CLOSED"
-    ).length;
+    const inProgressCount = issues.filter((issue) => issue.status === "IN_PROGRESS").length;
+    const closedCount = issues.filter((issue) => issue.status === "CLOSED").length;
 
     weeksData.push({
       day: date.toDateString().split(" ")[0],
@@ -57,14 +47,9 @@ export default async function Home() {
       <DatePicker/>
     </div>
       <div className="lg:pt-16 flex flex-col gap-5">
-        <IssueSummary
-          open={open}
-          inProgress={inProgress}
-          closed={closed}
-          total={total}
-        />
+        <IssueSummary/>
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-5 ">
-          <IssuesBarGraph data={weeksData} />
+          <IssuesBarGraph />
           <Card/>
       </div>
           <LatestIssues />

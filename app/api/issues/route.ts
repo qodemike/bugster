@@ -4,6 +4,19 @@ import { issueValidationSchema } from "../../validationSchemas";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/authOptions";
 
+
+export async function GET(req: NextRequest ){
+    const searchParams = req.nextUrl.searchParams
+
+    const queryDate = new Date( searchParams.get('date') as string)
+
+    const issues = await prisma.issue.findMany({where: {createdAt: {
+        gte: new Date(queryDate),
+        lt: new Date(new Date(queryDate).setDate(queryDate.getDate() + 1)),
+      },}})
+    return NextResponse.json(issues);
+}
+
 export async function  POST(request: NextRequest) {
 
     const session = await getServerSession(authOptions);
