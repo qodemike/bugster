@@ -5,12 +5,13 @@ import LatestIssues from "./components/LatestIssues";
 import prisma from "@/prisma/client";
 import { Card } from "@/components/ui/card";
 import IssuesBarGraph from "./components/IssuesBarGraph";
+import { CalendarForm } from "./issues/_components/playground";
+import DatePicker from "./components/DateRangePicker";
 
 export default async function Home() {
+
   const open = await prisma.issue.count({ where: { status: "OPEN" } });
-  const inProgress = await prisma.issue.count({
-    where: { status: "IN_PROGRESS" },
-  });
+  const inProgress = await prisma.issue.count({ where: { status: "IN_PROGRESS" },});
   const closed = await prisma.issue.count({ where: { status: "CLOSED" } });
   const total = open + inProgress + closed;
 
@@ -51,8 +52,10 @@ export default async function Home() {
 
   return (
     <>
-      <h1 className=" lg:fixed lg:z-20 mb-3 text-2xl font-bold ">Dashboard</h1>
-      {/* <div className=" hidden lg:block mb-5 border-t " /> */}
+    <div className="lg:fixed lg:z-20 mb-5 md:mb-3 flex flex-col md:flex-row md:justify-between lg:gap-7">
+      <h1 className=" mb-3 md:mb-0 text-2xl font-bold ">Dashboard</h1>
+      <DatePicker/>
+    </div>
       <div className="lg:pt-16 flex flex-col gap-5">
         <IssueSummary
           open={open}
