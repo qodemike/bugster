@@ -13,13 +13,13 @@ import DateRangeContext from "../context/dateRange/DateContext";
 
 const DatePicker = () => {
 
-  const { dateRange, setDateRange} = useContext(DateRangeContext)
+  const { dateRange, dispatch} = useContext(DateRangeContext)
 
   const handleOnSelectDayFrom = (day: Date) => {
-    setDateRange({ ...dateRange, from: day });
+    dispatch( { day , type: "UPDATE FROM"} )
   };
   const handleOnSelectDayTo = (day: Date) => {
-    setDateRange({ ...dateRange, to: day });
+    dispatch( { day , type: "UPDATE TO"} )
   };
 
   return (
@@ -72,7 +72,7 @@ const DatePicker = () => {
               selected={dateRange.to}
               onDayClick={(day) => handleOnSelectDayTo(day)}
               disabled={(date) =>
-                date > new Date() || date < new Date("1970-01-01")
+                date > new Date() || date < dateRange.from!
               }
             />
           </PopoverContent>

@@ -15,6 +15,8 @@ import CustomToolTip from "./CustomToolTip";
 import useFetchGraphData from "../hooks/useFetchGraphData";
 
 
+
+
 const IssuesBarGraph = () => {
 
 const data = useFetchGraphData()

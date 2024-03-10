@@ -8,38 +8,7 @@ import IssuesBarGraph from "./components/IssuesBarGraph";
 import DatePicker from "./components/DateRangePicker";
 
 export default async function Home() {
-
-  const startDate = new Date("2024-02-26");
-  const endDate = new Date("2024-03-01");
-
-  const weeksData = [];
-
-  for (
-    let date = new Date(startDate);
-    date <= endDate;
-    date.setDate(date.getDate() + 1)
-  ) {
-    const issues = await prisma.issue.findMany({
-      where: {
-        createdAt: {
-          gte: new Date(date),
-          lt: new Date(new Date(date).setDate(date.getDate() + 1)),
-        },
-      },
-    });
-
-    const openCount = issues.filter((issue) => issue.status === "OPEN").length;
-    const inProgressCount = issues.filter((issue) => issue.status === "IN_PROGRESS").length;
-    const closedCount = issues.filter((issue) => issue.status === "CLOSED").length;
-
-    weeksData.push({
-      day: date.toDateString().split(" ")[0],
-      Open: openCount,
-      "In progress": inProgressCount,
-      Closed: closedCount,
-    });
-  }
-
+  
   return (
     <>
     <div className="lg:fixed lg:z-20 mb-5 md:mb-3 flex flex-col md:flex-row md:justify-between lg:gap-7">
