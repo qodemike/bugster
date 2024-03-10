@@ -15,8 +15,6 @@ import CustomToolTip from "./CustomToolTip";
 import useFetchGraphData from "../hooks/useFetchGraphData";
 
 
-
-
 const IssuesBarGraph = () => {
 
 const data = useFetchGraphData()
@@ -36,22 +34,22 @@ const data = useFetchGraphData()
             )}
           />
           <CartesianGrid strokeDasharray={"5, 5"} className=" stroke-muted-foreground " />
-          <XAxis dataKey={"day"} axisLine={{ stroke: "none" }} />
+          <XAxis dataKey={"day"}  axisLine={{ stroke: "none" }} />
           <YAxis axisLine={{ stroke: "none" }} />
           <Bar
-            barSize={20}
+            barSize={15}
             radius={[10, 10, 10, 10]}
             dataKey={"Open"}
             className=" fill-secondary-foreground "
           />
           <Bar
-            barSize={20}
+            barSize={15}
             radius={[10, 10, 10, 10]}
             dataKey={"In progress"}
             className="fill-inProgress "
           />
           <Bar
-            barSize={20}
+            barSize={15}
             radius={[10, 10, 10, 10]}
             dataKey={"Closed"}
             className="fill-closed "

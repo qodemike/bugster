@@ -24,11 +24,7 @@ interface Props {
 export const columnHeaderData: { label: string; value: sortByType; className?: string }[] = [
   { label: "Issue", value: "title" },
   { label: "Status", value: "status", className: "hidden md:table-cell" },
-  {
-    label: "Date Created",
-    value: "createdAt",
-    className: "hidden md:table-cell",
-  },
+  {label: "Date Created", value: "createdAt", className: "hidden md:table-cell",},
 ];
 
 const IssuesTable = ({ issues, searchParams }: Props) => {
@@ -42,10 +38,7 @@ const IssuesTable = ({ issues, searchParams }: Props) => {
           {columnHeaderData.map((column) => (
             <TableHead key={column.value} className={column.className || ''}>
               <div className="flex items-center gap-1">
-                <Link
-                  href={{
-                    query: { ...searchParams, sortBy: column.value },
-                  }}
+                <Link href={{query: { ...searchParams, sortBy: column.value } }}
                 >
                   {column.label}
                 </Link>

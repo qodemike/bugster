@@ -35,7 +35,7 @@ const dateRangeReducer = (dateRange: DateRange, action: Action): DateRange => {
         if (action.type === 'UPDATE FROM'){
             const numberOfDays = Math.ceil( (dateRange.to!.getTime() - action.day.getTime()) / (1000 * 60 * 60 * 24) )
 
-            if ( numberOfDays > 7){
+            if ( numberOfDays >= 7){
                 showToast();
                 return dateRange;
             }

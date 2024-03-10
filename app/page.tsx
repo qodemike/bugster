@@ -1,13 +1,16 @@
 import { Metadata } from "next";
-import IssueBarChart from "./components/IssueBarChart";
+import IssuePieChart from "./components/IssuePieChart";
 import IssueSummary from "./components/IssueSummary";
 import LatestIssues from "./components/LatestIssues";
 import prisma from "@/prisma/client";
-import { Card } from "@/components/ui/card";
 import IssuesBarGraph from "./components/IssuesBarGraph";
 import DatePicker from "./components/DateRangePicker";
 
 export default async function Home() {
+
+  const open = await prisma.issue.count({ where: { status: "OPEN" } });
+    const inProgress = await prisma.issue.count({where: { status: "IN_PROGRESS" },});
+      const closed = await prisma.issue.count({ where: { status: "CLOSED" } });
   
   return (
     <>
@@ -16,10 +19,10 @@ export default async function Home() {
       <DatePicker/>
     </div>
       <div className="lg:pt-16 flex flex-col gap-5">
-        <IssueSummary/>
+        <IssueSummary open={open} inProgress={inProgress} closed={closed} />
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-5 ">
           <IssuesBarGraph />
-          <Card/>
+          <IssuePieChart open={open} inProgress={inProgress} closed={closed}/>
       </div>
           <LatestIssues />
       </div>

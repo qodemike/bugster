@@ -26,7 +26,6 @@ interface Props {
 const SelectAssignee = ({ issue }: Props) => {
   const { status } = useSession();
   const path = usePathname()
-  console.log(path)
 
   const { toast } = useToast();
   const {

@@ -59,7 +59,7 @@ const config = {
           DEFAULT: "hsl(var(--secondary-foreground))"
         },
         inProgress: {
-          DEFAULT: " #2563eb",
+          DEFAULT: "#2563eb",
         },
         closed: {
           DEFAULT: "#10b981"
