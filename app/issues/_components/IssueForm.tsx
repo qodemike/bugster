@@ -41,7 +41,7 @@ const IssueForm = ({ issue }: Props) => {
       else await axios.post("/api/issues", data);
       toast({
         title: "Submitted successfully!",
-        description: "CRUD Operation was a success!",
+        description: "Operation was a success!",
       });
       router.push("/issues/list");
       router.refresh();
@@ -49,7 +49,7 @@ const IssueForm = ({ issue }: Props) => {
       toast({
         variant: "destructive",
         title: "Something went wrong!",
-        description: "There was a problem submtting the form. Try Again",
+        description: "There was a problem submtting the form. Try Again!",
       });
     }
   };

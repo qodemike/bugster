@@ -1,4 +1,4 @@
 
-const date =  new Date()
+const paragraph = "Website Unresponsive on mobile "
 
-console.log(date.toDateString())
+console.log(paragraph.length)

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import {
-  GearIcon,
+  BarChartIcon,
   DashboardIcon,
   EnterIcon,
   ExitIcon,
@@ -26,6 +26,7 @@ const links = [
     icon: <FaList size={20} />,
   },
   { label: "Analytics", href: "/analytics", icon: <BsGraphUp size={20} /> },
+  { label: "Weekly Analysis", href: "/analytics/weekly", icon: <BarChartIcon width={20} height={20} /> },
 ];
 
 const SideBar = () => {
@@ -38,7 +39,7 @@ const SideBar = () => {
         <div className="h-16 pl-6 border-b flex items-center ">
           <NavLogo />
         </div>
-        <ul className=" mt-6 pl-6  flex flex-col gap-7">
+        <ul className=" mt-6 pl-6  flex flex-col gap-8">
           {links.map((link) => (
             <li key={link.label}>
               <Link
@@ -54,9 +55,6 @@ const SideBar = () => {
               </Link>
             </li>
           ))}
-          <li className=" text-sm hover:text-secondary-foreground/90  flex items-center gap-4 transition-all cursor-pointer">
-            <GearIcon width={20} height={20} /> <span>Settings</span>
-          </li>
         </ul>
       </div>
       <div className="pl-6 pt-6 text-sm border-t flex flex-col gap-5 ">

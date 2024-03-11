@@ -19,7 +19,7 @@ const IssueSummary = async ({open, inProgress, closed }: Props ) => {
     value: number;
     status?: Status;
   }[] = [
-    { title: "Total Issues", value: total },
+    { title: "Total New Issues", value: total },
     { title: "Closed Issues", value: closed, status: "CLOSED" },
     { title: "Open Issues", value: open, status: "OPEN" },
     { title: "In-progress Issues", value: inProgress, status: "IN_PROGRESS" },
@@ -33,7 +33,7 @@ const IssueSummary = async ({open, inProgress, closed }: Props ) => {
           href={`/issues/list?status=${container.status}`}
           className="   flex-1 "
         >
-          <Card className="p-4  flex justify-between items-center  md:flex-col  md:items-start md:gap-1" >
+          <Card className="p-4 hover:bg-secondary/70 flex justify-between items-center  md:flex-col  md:items-start md:gap-1 transition-all" >
               <CardTitle className="text-sm font-medium">
                 {container.title}
               </CardTitle>

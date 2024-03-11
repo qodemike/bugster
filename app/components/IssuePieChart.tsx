@@ -34,7 +34,7 @@ const IssuePieChart = ({ open, inProgress, closed }: Props) => {
         </p>
       </div>
 
-      <ResponsiveContainer width="100%" height={"100%"}>
+      <ResponsiveContainer width="100%" height={300} >
         <PieChart>
           <Pie
             data={data}

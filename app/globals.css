@@ -5,7 +5,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 95%;
+    --background: 0 0% 100%;
     --foreground: 224 71.4% 4.1%;
     --card: 0 0% 100%;
     --card-foreground: 224 71.4% 4.1%;
@@ -25,6 +25,9 @@
     --input: 220 13% 91%;
     --ring: 224 71.4% 4.1%;
     --radius: 0.5rem;
+    --open: hsl(var(--foreground));
+    --in-progress: #2563eb;
+    --closed: #10b981;
   }
 
   .dark {
@@ -47,6 +50,9 @@
     --border: 215 27.9% 16.9%;
     --input: 215 27.9% 16.9%;
     --ring: 216 12.2% 83.9%;
+    --open: hsl(var(--foreground));
+    --in-progress: #2563eb;
+    --closed: #10b981;
   }
 }
 

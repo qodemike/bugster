@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 const LatestIssues = async () => {
   const issues = await prisma.issue.findMany({
     orderBy: { createdAt: "desc" },
-    take: 5,
+    take: 4,
     include: {
       assignedToUser: true,
     },
@@ -32,7 +32,7 @@ const LatestIssues = async () => {
                 <div className=" flex flex-col items-start gap-2 ">
                   <Link href={`/issues/${issue.id}`}>
                     <Button variant="link" className={"h-2 p-0 transition"}>
-                      {issue.title}
+                      {issue.title.length > 28 ? issue.title.substring(0, 27)+ "..." : issue.title}
                     </Button>
                   </Link>
                   <div className="">

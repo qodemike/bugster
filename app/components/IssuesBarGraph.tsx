@@ -20,7 +20,13 @@ const IssuesBarGraph = () => {
 const data = useFetchGraphData()
 
   return (
-    <Card className="w-full px-4 pt-4 flex flex-col justify-center ">
+    <Card className="w-full px-4 pt-4 flex flex-col justify-center gap-3 ">
+      <div className="flex flex-col items-center ">
+        <h2 className="font-bold">Weekly Overview</h2>
+        <p className="text-sm dark:text-muted-foreground">
+          Click for a detailed view
+        </p>
+      </div>
       <ResponsiveContainer
         width={"100%"}
         height={350}
@@ -37,19 +43,19 @@ const data = useFetchGraphData()
           <XAxis dataKey={"day"}  axisLine={{ stroke: "none" }} />
           <YAxis axisLine={{ stroke: "none" }} />
           <Bar
-            barSize={15}
+            barSize={10}
             radius={[10, 10, 10, 10]}
             dataKey={"Open"}
             className=" fill-secondary-foreground "
           />
           <Bar
-            barSize={15}
+            barSize={10}
             radius={[10, 10, 10, 10]}
             dataKey={"In progress"}
             className="fill-inProgress "
           />
           <Bar
-            barSize={15}
+            barSize={10}
             radius={[10, 10, 10, 10]}
             dataKey={"Closed"}
             className="fill-closed "
