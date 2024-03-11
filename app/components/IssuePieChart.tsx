@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import { Card } from "@/components/ui/card";
 import { CustomToolTipProps } from "./CustomToolTip";
+import { CustomLegend } from "./CustomLegend";
 
 interface Props {
   open: number;
@@ -76,25 +77,6 @@ const IssuePieChart = ({ open, inProgress, closed }: Props) => {
 };
 
 export default IssuePieChart;
-
-const CustomLegend = () => {
-  return (
-    <div className="flex justify-center gap-4">
-      <div className="flex items-center gap-2">
-        <div className=" w-[10px]  h-[10px] bg-open rounded-full " />{" "}
-        <span className="text-sm">Open</span>
-      </div>
-      <div className="flex items-center gap-2">
-        <div className=" w-[10px]  h-[10px] bg-inProgress rounded-full " />{" "}
-        <span className="text-sm">In Progress</span>
-      </div>
-      <div className="flex items-center gap-2">
-        <div className=" w-[10px]  h-[10px] bg-closed rounded-full " />{" "}
-        <span className="text-sm">Closed</span>
-      </div>
-    </div>
-  );
-};
 
 const CustomPieToolTip = ({ active, payload, label }: CustomToolTipProps) => {
   if (!active || !payload.length) return;

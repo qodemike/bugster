@@ -13,7 +13,7 @@ interface WeeksData {
   Closed: number;
 }
 
-const useFetchGraphData = () => {
+const useFetchWeeklyGraphData = () => {
   const { dateRange } = useContext(DateRangeContext);
 
   const fetchData = async (date: Date) => {
@@ -59,4 +59,4 @@ const useFetchGraphData = () => {
   return data;
 };
 
-export default useFetchGraphData;
+export default useFetchWeeklyGraphData;

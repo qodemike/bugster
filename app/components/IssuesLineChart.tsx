@@ -10,16 +10,16 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import useFetchGraphData from "../hooks/useFetchGraphData";
+import useFetchWeeklyGraphData from "../hooks/useFetchWeeklyGraphData";
 import CustomToolTip from "./CustomToolTip";
 import { Card } from "@/components/ui/card";
 
 const IssuesLineChart = () => {
-  const data = useFetchGraphData();
+  const data = useFetchWeeklyGraphData();
   return (
     <Card className="w-full px-4 pt-4 flex flex-col justify-center gap-3 ">
       <div className="flex flex-col items-center ">
-        <h2 className="font-bold">Overall Overview</h2>
+        <h2 className="font-bold">Monthly Overview</h2>
         <p className="text-sm dark:text-muted-foreground">
           +20.1% closed last month
         </p>
