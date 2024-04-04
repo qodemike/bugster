@@ -13,22 +13,18 @@ import {
 import { Card } from "@/components/ui/card";
 import CustomToolTip from "./CustomToolTip";
 import useFetchWeeklyGraphData from "../hooks/useFetchWeeklyGraphData";
-import { useRouter } from "next/navigation";
 
 const IssuesBarGraph = () => {
-  const router = useRouter();
-
   const data = useFetchWeeklyGraphData();
 
   return (
     <Card
-      onClick={() => router.push("/analytics/weekly")}
       className="w-full md:px-4 pt-4 flex flex-col justify-center gap-3  cursor-pointer"
     >
       <div className="flex flex-col items-center ">
         <h2 className="font-bold">Weekly Overview</h2>
         <p className="text-sm dark:text-muted-foreground">
-          A week of Issues activity
+          View of weekly activity
         </p>
       </div>
       <ResponsiveContainer

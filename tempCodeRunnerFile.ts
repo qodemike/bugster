@@ -1,4 +1,4 @@
 
-const paragraph = "Website Unresponsive on mobile "
+const date = new Date()
 
-console.log(paragraph.length)
+console.log(date.toLocaleDateString())

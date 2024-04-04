@@ -12,9 +12,9 @@ import {
   YAxis,
 } from "recharts";
 import { Card } from "@/components/ui/card";
-import useFetchWeeklyGraphData from "../hooks/useFetchWeeklyGraphData";
-import CustomToolTip from "../components/CustomToolTip";
-import { CustomLegend } from "../components/CustomLegend";
+import useFetchWeeklyGraphData from "../../hooks/useFetchWeeklyGraphData";
+import CustomToolTip from "../../components/CustomToolTip";
+import { CustomLegend } from "../../components/CustomLegend";
 
 
 const IssuesBarGraph = () => {

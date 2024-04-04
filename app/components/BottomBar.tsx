@@ -4,8 +4,9 @@ import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import { GearIcon, DashboardIcon } from "@radix-ui/react-icons";
 import { BsGraphUp } from "react-icons/bs";
-import { FaList } from "react-icons/fa";
+import { FaList  } from "react-icons/fa";
 import { usePathname } from "next/navigation";
+import { BarChart2 } from "lucide-react";
 
 const links = [
   {
@@ -19,7 +20,7 @@ const links = [
     icon: <FaList size={25} />,
   },
   { label: "Analytics", href: "/analytics", icon: <BsGraphUp size={25} /> },
-  { label: "Settings", href: "", icon: <GearIcon width={25} height={25} /> },
+  { label: "Settings", href: "/analytics/weekly", icon: <BarChart2 width={25} height={25} /> },
 ];
 
 const BottomBar = () => {

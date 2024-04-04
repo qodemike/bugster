@@ -10,26 +10,18 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import CustomToolTip from "./CustomToolTip";
 import { Card } from "@/components/ui/card";
-import { useRouter } from "next/navigation";
+import CustomToolTip from "../components/CustomToolTip";
 import useFetchGraphData from "../hooks/useFetchGraphData";
 
-const IssuesLineChart = () => {
-  const router = useRouter()
+const IssuesAnalysisLineChart = () => {
   const data = useFetchGraphData();
   return (
-    <Card className="w-full px-4 pt-4 flex flex-col justify-center gap-3 " onClick={() => router.push("/analytics")}>
-      <div className="flex flex-col items-center ">
-        <h2 className="font-bold">Overall Activity</h2>
-        <p className="text-sm dark:text-muted-foreground">
-          +20.1% closed last month
-        </p>
-      </div>
-      <ResponsiveContainer width={"100%"} height={350} className={"relative right-6"}>
+    <Card className="w-full px-4 pt-4 flex flex-col justify-center gap-3  h-[400px] md:h-[calc(100vh-250px)] lg:h-[calc(100vh-140px)]">
+      <ResponsiveContainer width={"100%"} height={"100%"} className={"relative right-6"}>
         <LineChart data={data}>
           <CartesianGrid strokeDasharray={"5, 5"} className=" stroke-muted-foreground " />
-          <XAxis dataKey={"day"} style={{fontSize: "12px"}} />
+          <XAxis dataKey={"day"} style={{fontSize: "14px"}} />
           <YAxis />
           <Line type="monotone" dataKey="Open" style={{stroke: "var(--open)" }} />
           <Line type="monotone" dataKey="In progress" style={{stroke: " var(--in-progress) " }} />
@@ -45,4 +37,4 @@ const IssuesLineChart = () => {
   );
 };
 
-export default IssuesLineChart;
+export default IssuesAnalysisLineChart;

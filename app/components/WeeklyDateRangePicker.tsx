@@ -9,17 +9,18 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
-import DateRangeContext from "../context/dateRange/DateRangeContext";
+import WeeksDateRangeContext from "../context/weeksDateRange/WeeksDateRangeContext";
 
-const DateRangePicker = () => {
 
-  const { dateRange, dispatch} = useContext(DateRangeContext)
+const WeeklyDateRangePicker = () => {
+
+  const { weeksDateRange, dispatch} = useContext(WeeksDateRangeContext)
 
   const handleOnSelectDayFrom = (day: Date) => {
-    dispatch( { day , type: "UPDATE FROM"} )
+    dispatch( { day , type: "UPDATE WEEK FROM"} )
   };
   const handleOnSelectDayTo = (day: Date) => {
-    dispatch( { day , type: "UPDATE TO"} )
+    dispatch( { day , type: "UPDATE WEEK TO"} )
   };
 
   return (
@@ -34,7 +35,7 @@ const DateRangePicker = () => {
             >
               {(
                 <span className=" text-sm lg:text-xs">
-                    {dateRange?.from?.toDateString()}
+                    {weeksDateRange?.from?.toDateString()}
                 </span>
               ) || <span className=" text-sm lg:text-xs">Pick a date</span>}
               <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
@@ -43,7 +44,7 @@ const DateRangePicker = () => {
           <PopoverContent className="w-auto p-0" align="start">
             <Calendar
               mode="single"
-              selected={dateRange.from}
+              selected={weeksDateRange.from}
               onDayClick={(day) => handleOnSelectDayFrom(day)}
               disabled={(date) =>
                 date > new Date() || date < new Date("1970-01-01")
@@ -60,7 +61,7 @@ const DateRangePicker = () => {
               variant="outline"
               className="w-48 h-[35px] bg-card flex justify-between "
             >
-              {<span className="text-sm lg:text-xs">{dateRange?.to?.toDateString()}</span> || (
+              {<span className="text-sm lg:text-xs">{weeksDateRange?.to?.toDateString()}</span> || (
                 <span className="text-sm lg:text-xs">Pick a date</span>
               )}
               <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
@@ -69,10 +70,10 @@ const DateRangePicker = () => {
           <PopoverContent className="w-auto p-0" align="start">
             <Calendar
               mode="single"
-              selected={dateRange.to}
+              selected={weeksDateRange.to}
               onDayClick={(day) => handleOnSelectDayTo(day)}
               disabled={(date) =>
-                date > new Date() || date < dateRange.from!
+                date > new Date() || date < weeksDateRange.from!
               }
             />
           </PopoverContent>
@@ -82,4 +83,4 @@ const DateRangePicker = () => {
   );
 };
 
-export default DateRangePicker;
+export default WeeklyDateRangePicker;

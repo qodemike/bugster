@@ -1,34 +1,34 @@
 "use client";
 
 import { useContext, useEffect, useMemo } from "react";
+import DateRangeContext from "../context/dateRange/DateRangeContext";
 import { Issue } from "@prisma/client";
-import { useQuery } from "@tanstack/react-query";
-import WeeksDateRangeContext from "../context/weeksDateRange/WeeksDateRangeContext";
+import { useQuery, } from "@tanstack/react-query";
 
-interface WeeksData {
+interface Data {
   day: string;
   Open: number;
   "In progress": number;
   Closed: number;
 }
 
-const useFetchWeeklyGraphData = () => {
-  const {  weeksDateRange } = useContext(WeeksDateRangeContext);
+const useFetchGraphData = () => {
+  const { dateRange } = useContext(DateRangeContext);
 
   const fetchData = async (date: Date) => {
     const response = await fetch(`/api/issues?date=${date}`, { method: "GET" });
     return await response.json();
   };
 
-  const { data } = useQuery<WeeksData[]>({
-    queryKey: ["graphData", weeksDateRange],
+  const { data } = useQuery<Data[]>({
+    queryKey: ["graphData", dateRange],
     queryFn: async () => {
 
       const result = [];
 
       for (
-        let date = new Date(weeksDateRange.from!);
-        date <= weeksDateRange.to!;
+        let date = new Date(dateRange.from!);
+        date <= dateRange.to!;
         date.setDate(date.getDate() + 1)
       ) {
         const issues: Issue[] = await fetchData(date);
@@ -44,7 +44,7 @@ const useFetchWeeklyGraphData = () => {
         ).length;
 
         result.push({
-          day: date.toDateString().split(" ")[0],
+          day: date.toLocaleDateString().split("/").join('-'),
           Open: openCount,
           "In progress": inProgressCount,
           Closed: closedCount,
@@ -58,4 +58,4 @@ const useFetchWeeklyGraphData = () => {
   return data;
 };
 
-export default useFetchWeeklyGraphData;
+export default useFetchGraphData;

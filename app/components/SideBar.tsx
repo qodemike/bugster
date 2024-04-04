@@ -13,6 +13,7 @@ import {
 } from "@radix-ui/react-icons";
 import { BsGraphUp } from "react-icons/bs";
 import { FaList } from "react-icons/fa";
+import { BarChart2 } from "lucide-react";
 
 const links = [
   {
@@ -26,7 +27,7 @@ const links = [
     icon: <FaList size={20} />,
   },
   { label: "Analytics", href: "/analytics", icon: <BsGraphUp size={20} /> },
-  { label: "Weekly Analysis", href: "/analytics/weekly", icon: <BarChartIcon width={20} height={20} /> },
+  { label: "Weekly Overview", href: "/analytics/weekly", icon: <BarChart2 width={20} height={20} /> },
 ];
 
 const SideBar = () => {

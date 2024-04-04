@@ -9,7 +9,8 @@ import { Toaster } from "@/components/ui/toaster";
 import SideBar from "./components/SideBar";
 import NavBar from "./components/NavBar";
 import BottomBar from "./components/BottomBar";
-import DateRangeProvider from "./context/dateRange/DateProvider";
+import DateRangeProvider from "./context/dateRange/DateRangeProvider";
+import WeeksDateRangeProvider from "./context/weeksDateRange/WeeksDateRangeProvider";
 
 
 export const metadata: Metadata = {
@@ -23,10 +24,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={GeistSans.className}>
-        <ThemeProvider attribute="class" defaultTheme="light">
+        <ThemeProvider attribute="class" defaultTheme="dark">
           <QueryClientProvider>
             <AuthProvider>
               <DateRangeProvider>
+              <WeeksDateRangeProvider>
               <div className=" grid grid-cols-1 lg:grid-cols-[230px_1fr]">
                 <aside className="hidden lg:block">
                   <SideBar />
@@ -40,6 +42,7 @@ export default function RootLayout({
                 </div>
               </div>
               <Toaster />
+              </WeeksDateRangeProvider>
               </DateRangeProvider>
             </AuthProvider>
           </QueryClientProvider>
