@@ -26,7 +26,7 @@ export default async function Home() {
           <LatestIssues />
           <IssuePieChart open={open} inProgress={inProgress} closed={closed} />
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-5">
+        <div className="grid grid-cols-1  gap-5">
           <IssuesBarGraph />
           <IssuesLineChart />
         </div>
