@@ -20,12 +20,12 @@ const IssuesBarGraph = () => {
   return (
     <Card className="w-full md:px-4 pt-4 flex flex-col justify-center gap-3  cursor-pointer">
       <div className="flex flex-col items-center ">
-        <h2 className="font-bold">Weekly Overview</h2>
+        <h2 className="font-bold">Weekly Overview </h2>
         <p className="text-sm dark:text-muted-foreground">
           View of weekly activity
         </p>
       </div>
-      <div className="overflow-scroll">
+      <div className="overflow-x-scroll md:overflow-auto">
         <ResponsiveContainer
           minWidth={600}
           height={350}
