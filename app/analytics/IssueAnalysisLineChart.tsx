@@ -18,6 +18,7 @@ const IssuesAnalysisLineChart = () => {
   const data = useFetchGraphData();
   return (
     <Card className="w-full px-4 pt-4 flex flex-col justify-center gap-3  h-[400px] md:h-[calc(100vh-250px)] lg:h-[calc(100vh-140px)]">
+      <div className=" h-full overflow-x-scroll md:overflow-auto">
       <ResponsiveContainer minWidth={600} height={"100%"} className={"relative right-6"}>
         <LineChart data={data}>
           <CartesianGrid
@@ -35,7 +36,7 @@ const IssuesAnalysisLineChart = () => {
           />
         </LineChart>
       </ResponsiveContainer>
-
+      </div>
     </Card>
   );
 };

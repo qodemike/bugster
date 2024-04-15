@@ -20,9 +20,9 @@ const IssuesBarGraph = () => {
 
   return (
     <Card className="w-full px-4 pt-4 flex flex-col justify-center gap-3 h-[400px] md:h-[calc(100vh-250px)] lg:h-[calc(100vh-140px)]">
-      <div className="overflow-x-scroll md:overflow-auto">
+      <div className="h-full overflow-x-scroll md:overflow-auto">
       <ResponsiveContainer
-        minWidth={500}
+        minWidth={600}
         height={"100%"}
         className="relative right-6"
       >
