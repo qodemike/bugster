@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -16,10 +15,8 @@ import useFetchWeeklyGraphData from "../../hooks/useFetchWeeklyGraphData";
 import CustomToolTip from "../../components/CustomToolTip";
 import { CustomLegend } from "../../components/CustomLegend";
 
-
 const IssuesBarGraph = () => {
-
-const data = useFetchWeeklyGraphData()
+  const data = useFetchWeeklyGraphData();
 
   return (
     <Card className="w-full px-4 pt-4 flex flex-col justify-center gap-3 h-[400px] md:h-[calc(100vh-250px)] lg:h-[calc(100vh-140px)] ">
@@ -35,8 +32,13 @@ const data = useFetchWeeklyGraphData()
               <CustomToolTip active={active} payload={payload} label={label} />
             )}
           />
-          <CartesianGrid strokeDasharray={"5, 5"} className=" stroke-muted-foreground " />
-          <XAxis dataKey={"day"}  axisLine={{ stroke: "none" }} />
+
+          <CartesianGrid
+            vertical={false}
+            strokeDasharray={"5, 5"}
+            className=" stroke-muted-foreground "
+          />
+          <XAxis dataKey={"day"} axisLine={{ stroke: "none" }} />
           <YAxis axisLine={{ stroke: "none" }} />
           <Bar
             barSize={10}
@@ -63,4 +65,3 @@ const data = useFetchWeeklyGraphData()
 };
 
 export default IssuesBarGraph;
-

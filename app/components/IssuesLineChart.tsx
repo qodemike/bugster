@@ -16,24 +16,48 @@ import { useRouter } from "next/navigation";
 import useFetchGraphData from "../hooks/useFetchGraphData";
 
 const IssuesLineChart = () => {
-  const router = useRouter()
+  const router = useRouter();
   const data = useFetchGraphData();
   return (
-    <Card className="w-full px-4 pt-4 flex flex-col justify-center gap-3 " onClick={() => router.push("/analytics")}>
+    <Card
+      className="w-full px-4 pt-4 flex flex-col justify-center gap-3 overflow-scroll "
+      onClick={() => router.push("/analytics")}
+    >
       <div className="flex flex-col items-center ">
         <h2 className="font-bold">Overall Activity</h2>
         <p className="text-sm dark:text-muted-foreground">
           +20.1% closed last month
         </p>
       </div>
-      <ResponsiveContainer width={"100%"} height={350} className={"relative right-6"}>
+      <div className="overflow-scroll">
+      <ResponsiveContainer
+        minWidth={600}
+        height={350}
+        className={"relative right-6"}
+      >
         <LineChart data={data}>
-          <CartesianGrid strokeDasharray={"5, 5"} className=" stroke-muted-foreground " />
-          <XAxis dataKey={"day"} style={{fontSize: "12px"}} />
+          <CartesianGrid
+            vertical={false}
+            strokeDasharray={"5, 5"}
+            className=" stroke-muted-foreground "
+          />
+          <XAxis dataKey={"day"} style={{ fontSize: "12px" }} />
           <YAxis />
-          <Line type="monotone" dataKey="Open" style={{stroke: "var(--open)" }} />
-          <Line type="monotone" dataKey="In progress" style={{stroke: " var(--in-progress) " }} />
-          <Line type="monotone" dataKey="Closed" style={{stroke: "var(--closed) " }} />
+          <Line
+            type="monotone"
+            dataKey="Open"
+            style={{ stroke: "var(--open)" }}
+          />
+          <Line
+            type="monotone"
+            dataKey="In progress"
+            style={{ stroke: " var(--in-progress) " }}
+          />
+          <Line
+            type="monotone"
+            dataKey="Closed"
+            style={{ stroke: "var(--closed) " }}
+          />
           <Tooltip
             content={({ active, payload, label }) => (
               <CustomToolTip active={active} payload={payload} label={label} />
@@ -41,6 +65,7 @@ const IssuesLineChart = () => {
           />
         </LineChart>
       </ResponsiveContainer>
+      </div>
     </Card>
   );
 };
