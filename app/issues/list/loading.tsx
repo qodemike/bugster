@@ -32,7 +32,7 @@ const IssuesPageSkeleton = async () => {
               <TableRow key={issue}>
                 <TableCell className="">
                   <Skeleton className="h-5" />
-                  <div className="block md:hidden">
+                  <div className="block mt-2 md:hidden">
                     <Skeleton className="h-5" />
                   </div>
                 </TableCell>
